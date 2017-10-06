@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".Activity.ProductDescription">
+
+
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        sothree:umanoDragView="@+id/btnOptions"
+        sothree:umanoOverlay="true"
+        sothree:umanoPanelHeight="40dp"
+        sothree:umanoParallaxOffset="150dp"
+        sothree:umanoScrollableView="@+id/ll_Scroll">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/product_Linear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <FrameLayout
+                    android:id="@+id/productDescFrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="272dp">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="72dp">
+
+                    </android.support.v4.view.ViewPager>
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="72dp"
+                        android:layout_gravity="bottom">
+
+                        <LinearLayout
+                            android:id="@+id/thumbnails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingTop="2dp" />
+                    </HorizontalScrollView>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:background="#7000"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/tour_productdesc_special"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tour_productdesc_subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/btnEnquireForThisTour"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@color/colorLightPrimary"
+                    android:text="Enquire for this Tour"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+
+                <!-- <WebView
+                     android:id="@+id/WebProductDesc"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                    >
+
+                 </WebView>-->
+
+                <!-- <android.support.v7.widget.CardView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="15dp"
+                     app:cardCornerRadius="2dp"
+                     app:cardElevation="5dp"
+                     app:cardBackgroundColor="@color/white">-->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/productdescRecyler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/productReviewCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Reviews"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/filter_heading"
+                            android:textStyle="bold" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/productReviewRecyler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <!-- </android.support.v7.widget.CardView>-->
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+
+            <ScrollView
+                android:id="@+id/ll_Scroll"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:scrollbars="vertical"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/ll_Bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btnOptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorMoreLightPrimary"
+                        android:text="Book Your Order"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:background="#7000"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/tour_productOption_special"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tour_productdescOption_subtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/edt_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:hint="Select tour date"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="@color/colorMoreLightPrimary"
+                            android:textSize="12sp"
+                            android:layout_weight="1"
+                            android:inputType="date"
+                            android:layout_margin="10dp" />
+
+
+                        <EditText
+                            android:id="@+id/edt_qty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:hint="Select quantity"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="@color/colorMoreLightPrimary"
+                            android:textSize="12sp"
+                            android:layout_weight="1"
+                            android:inputType="number"
+                            android:layout_margin="10dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|end"
+                android:orientation="vertical"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp">
+
+
+                <Button
+                    android:id="@+id/btn_addtoCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:text="Add To Cart"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="5dp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+</LinearLayout>

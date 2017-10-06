@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="2dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    app:cardBackgroundColor="@color/lightBlue">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/secondary_text_size"
+                android:text="Order ID"
+                android:layout_weight="0.50"
+                android:padding="5dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/txtOrderID"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/order_history_text"
+                android:layout_weight="0.50"
+                android:padding="3dp"
+                android:background="@drawable/rect_grey_background"
+                android:gravity="center"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/secondary_text_size"
+                android:text="Order Status"
+                android:layout_weight="0.50"
+                android:padding="5dp" />
+
+
+            <TextView
+                android:id="@+id/txtOrderStatus"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/order_history_text"
+                android:layout_weight="0.50"
+                android:padding="3dp"
+                android:background="@drawable/rect_grey_background"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/secondary_text_size"
+                android:text="Date Added"
+                android:layout_weight="0.50"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/txtOrderDate"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/order_history_text"
+                android:layout_weight="0.50"
+                android:background="@drawable/rect_grey_background"
+                android:padding="3dp"
+                android:gravity="center"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/secondary_text_size"
+                android:text="No.Of Products"
+                android:layout_weight="0.50"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/txtNoOfProducts"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/order_history_text"
+                android:layout_weight="0.50"
+                android:background="@drawable/rect_grey_background"
+                android:padding="3dp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/secondary_text_size"
+                android:text="Total Price"
+                android:layout_weight="0.50"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/txtOrderPriceTotal"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/order_history_text"
+                android:layout_weight="0.50"
+                android:background="@drawable/rect_grey_background"
+                android:padding="3dp"
+                android:gravity="center" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnOrderDocs"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:text="View Docs"
+                android:layout_margin="10dp"
+                android:layout_weight="0.50" />
+
+            <Button
+                android:id="@+id/btnOrderView"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:text="View ORDER "
+                android:layout_margin="10dp"
+                android:layout_weight="0.50" />
+
+
+        </LinearLayout>
+
+        <!--<Button
+            android:id="@+id/btnOrderView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:text="VIEW"
+            android:layout_margin="10dp" />-->
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

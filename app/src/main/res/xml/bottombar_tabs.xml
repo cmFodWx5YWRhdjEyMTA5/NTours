@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        icon="@drawable/ic_tab_home"
+        inActiveColor="@color/colorGrey"
+        activeColor="@color/colorPrimary"
+        title="Home" />
+    <tab
+        id="@+id/tab_search"
+        icon="@drawable/ic_tab_search"
+        inActiveColor="@color/colorGrey"
+        activeColor="@color/colorPrimary"
+        title="Search" />
+    <tab
+        id="@+id/tab_deals"
+        icon="@drawable/ic_tab_notification"
+        inActiveColor="@color/colorGrey"
+        activeColor="@color/colorPrimary"
+        title="Deals" />
+
+    <tab
+        id="@+id/tab_contact"
+        icon="@drawable/ic_contact"
+        inActiveColor="@color/colorGrey"
+        activeColor="@color/colorPrimary"
+        title="Contact" />
+
+    <tab
+        id="@+id/tab_more"
+        icon="@drawable/ic_tab_more"
+        inActiveColor="@color/colorGrey"
+        activeColor="@color/colorPrimary"
+        title="More" />
+</tabs>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/products_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="72dp"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageProduct"
+            android:layout_width="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+
+            android:layout_height="@dimen/category_image" />
+
+
+        <TextView
+            android:id="@+id/tourCategory_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/category_heading"
+            android:shadowColor="@color/colorGrey"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageProduct"
+            android:layout_alignParentLeft="true"
+            android:background="#7000"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginLeft="15dp"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txtTourStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/secondary_text_size"
+            android:shadowColor="@color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="3"
+            android:layout_marginRight="20dp"
+            android:textAlignment="gravity"
+            android:gravity="right"
+
+            />
+
+
+    </RelativeLayout>
+</LinearLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/products_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/lightGrey">
+
+
+        <RelativeLayout
+             android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            &lt;!&ndash;<ImageView
+                android:id="@+id/imageProduct"
+                android:layout_width="match_parent"
+                android:alpha="0.6"
+                android:layout_height="@dimen/category_image"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                />&ndash;&gt;
+
+
+            <ImageView
+                android:id="@+id/imageProduct"
+            android:layout_width="match_parent"
+          android:scaleType="fitXY"
+            android:alpha="0.6"
+            android:layout_height="@dimen/category_image"
+
+           />
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            android:layout_width="wrap_content"
+
+            <TextView
+                android:id="@+id/tourCategory_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/category_heading"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"/>
+
+
+
+           &lt;!&ndash; <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignBottom="@id/imageProduct"
+                android:textColor="@color/white"
+                android:layout_margin="20dp"
+                android:textSize="13sp" />&ndash;&gt;
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imageProduct"
+                android:layout_alignParentLeft="true"
+                android:background="#7000"
+                android:orientation="vertical"
+                android:id="@+id/linearLayout">
+
+
+                <TextView
+                    android:id="@+id/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="13sp" />
+
+           &lt;!&ndash; <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="12sp" />&ndash;&gt;
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtTourStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/linearLayout"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/filter_heading"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:layout_margin="10dp"
+                />
+
+
+        </RelativeLayout>
+
+
+
+       </LinearLayout>-->
+

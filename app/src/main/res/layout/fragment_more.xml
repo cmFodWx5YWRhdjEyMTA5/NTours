@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardAbout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtAbout"
+            android:textSize="@dimen/filter_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="About Us"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:drawableRight="@drawable/ic_navigation_arrow_right" />
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardEvent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtEvent"
+            android:textSize="@dimen/filter_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Create Event"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:drawableRight="@drawable/ic_navigation_arrow_right" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardBlog"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtBlog"
+            android:textSize="@dimen/filter_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Blog"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:drawableRight="@drawable/ic_navigation_arrow_right" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardTerms"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtTerms"
+            android:textSize="@dimen/filter_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Terms"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:drawableRight="@drawable/ic_navigation_arrow_right" />
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardPrivacy"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/txtPrivacy"
+            android:textSize="@dimen/filter_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Privacy &amp; Policy"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:drawableRight="@drawable/ic_navigation_arrow_right" />
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

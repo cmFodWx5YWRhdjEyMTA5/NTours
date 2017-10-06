@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_category"
+        inActiveColor="@color/colorGreyLight"
+        activeColor="@color/colorPrimary"
+        title="CATEGORIES"
+        icon="@drawable/ic_filter"
+
+        />
+    <tab
+        id="@+id/tab_popular"
+        inActiveColor="@color/colorGreyLight"
+        activeColor="@color/colorPrimary"
+        title="FEATURED"
+        icon="@drawable/ic_user" />
+
+</tabs>

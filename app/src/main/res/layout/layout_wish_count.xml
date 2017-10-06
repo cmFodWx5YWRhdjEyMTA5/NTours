@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.joanzapata.iconify.widget.IconButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:background="@drawable/ic_wish"
+        android:layout_margin="3dp"
+        android:id="@+id/badge_icon_button" />
+
+    <TextView
+        android:id="@+id/badge_textView"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:gravity="center"
+        android:textColor="#FFF"
+        android:textSize="10sp"
+        android:layout_alignRight="@id/badge_icon_button"
+        android:layout_alignEnd="@id/badge_icon_button"
+        android:background="@drawable/badge_circle" />
+</RelativeLayout>

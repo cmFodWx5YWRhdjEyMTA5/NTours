@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activity.ForexActivity"
+    android:orientation="vertical">
+
+    <!--
+        <include android:id="@+id/enquiryToolbar"
+            layout="@layout/toolbar"></include>-->
+
+
+    <android.support.v7.widget.Toolbar android:id="@+id/forexToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/txtForexEnqery"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forex Enquiry"
+                android:gravity="center"
+                android:textSize="@dimen/filter_heading"
+                android:textColor="@color/colorPrimary"
+
+                />
+
+
+            <EditText
+                android:id="@+id/input_ForexName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Name"
+                android:textColorHint="@color/gray"
+                android:inputType="text"
+                android:maxLines="1"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="20dip" />
+
+
+            <EditText
+                android:id="@+id/input_ForexPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contactnumber_hint"
+                android:textColorHint="@color/gray"
+                android:inputType="number"
+                android:maxLines="1"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="10dip" />
+
+
+            <EditText
+                android:id="@+id/input_ForexEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Email"
+                android:maxLines="1"
+                android:textColorHint="@color/gray"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="10dip" />
+
+
+            <EditText
+                android:id="@+id/input_ForexCurrency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Required Currency "
+                android:textColorHint="@color/gray"
+                android:inputType="text"
+                android:maxLines="1"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="20dip" />
+
+
+            <EditText
+                android:id="@+id/input_ForexAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tentative Amount"
+                android:textColorHint="@color/gray"
+                android:inputType="text"
+                android:maxLines="1"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="20dip" />
+
+
+            <Button
+                android:id="@+id/btnForexEnquiry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:text="Submit"
+                android:layout_marginBottom="50dp" />
+            <!--
+      -->
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

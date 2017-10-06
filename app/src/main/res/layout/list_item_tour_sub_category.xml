@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/subCategory_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="72dp"
+    android:orientation="vertical"
+
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/subCategory_image"
+            android:layout_width="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+
+            android:layout_height="@dimen/category_image" />
+
+        <ImageView
+            android:id="@+id/imageProduct"
+            android:layout_width="match_parent"
+            android:alpha="0.6"
+            android:layout_height="@dimen/category_image"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/subCategory_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/category_heading"
+            android:shadowColor="@color/colorGrey"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/subCategory_image"
+            android:layout_alignParentLeft="true"
+            android:background="#7000"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/subCategory_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginLeft="15dp"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+
+        <!--  <TextView
+              android:id="@+id/description"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignBottom="@id/imageProduct"
+              android:layout_alignParentRight="true"
+              android:textSize="13sp"
+              android:textColor="@color/white" />-->
+
+    </RelativeLayout>
+</LinearLayout>

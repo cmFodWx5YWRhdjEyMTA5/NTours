@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/nav_tour" />
+
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@drawable/ic_nav_event"
+            android:title="Events" />
+
+        <item
+            android:id="@+id/nav_tickets"
+            android:icon="@drawable/ic_nav_ticket"
+            android:title="Tickets" />
+
+        <item
+            android:id="@+id/nav_passport"
+            android:icon="@drawable/ic_nav_passport"
+            android:title="@string/nav_passport" />
+        <item
+            android:id="@+id/nav_visa"
+            android:icon="@drawable/ic_nav_visa"
+            android:title="@string/nav_visa" />
+        <item
+            android:id="@+id/nav_forex"
+            android:title="@string/nav_forex"
+            android:icon="@drawable/ic_nav_forex" />
+
+        <item
+            android:id="@+id/nav_insurance"
+            android:title="@string/nav_insurance"
+            android:icon="@drawable/ic_nav_insurance" />
+
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_feedback"
+                android:title="@string/nav_enq" />
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_phone"
+                android:title="@string/nav_support" />
+            <item
+                android:id="@+id/nav_refer"
+                android:icon="@drawable/ic_nav_share"
+                android:title="Share" />
+
+
+        </menu>
+    </item>
+
+    <item android:title="Extras">
+        <menu>
+
+            <item
+                android:id="@+id/nav_entertain"
+                android:title="Entertainment"
+                android:icon="@drawable/ic_nav_entertainment" />
+            <item
+                android:id="@+id/nav_currancy"
+                android:icon="@drawable/ic_nav_currancy"
+                android:title="@string/nav_currancy" />
+
+            <item
+                android:id="@+id/nav_weather"
+                android:icon="@drawable/ic_nav_weather"
+                android:title="@string/nav_weather" />
+
+            <item
+                android:id="@+id/nav_timezone"
+                android:icon="@drawable/ic_nav_timezone"
+                android:title="@string/nav_timezone" />
+
+            <item
+                android:id="@+id/nav_world"
+                android:icon="@drawable/ic_nav_world"
+                android:title="@string/nav_world" />
+        </menu>
+    </item>
+
+
+</menu>

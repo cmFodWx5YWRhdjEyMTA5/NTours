@@ -1,0 +1,152 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.TourProduct">
+
+    <ProgressBar
+        android:id="@+id/tourProduct_Progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        style="?android:progressBarStyle"
+        android:visibility="gone" />
+
+    <!-- <android.support.v7.widget.Toolbar
+         android:id="@+id/tourProductToolbar"
+         android:layout_width="match_parent"
+         android:layout_height="?attr/actionBarSize"
+         android:background="@color/colorPrimary"
+         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+         xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:app="http://schemas.android.com/apk/res-auto" />-->
+
+
+    <LinearLayout
+        android:id="@+id/ProductLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+
+        android:orientation="horizontal"
+        android:background="@drawable/product_text_view_border">
+
+        <TextView
+            android:id="@+id/txtProductSort"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:drawablePadding="20dp"
+            android:drawableLeft="@drawable/ic_sort"
+
+            />
+
+
+        <TextView
+
+            android:background="@drawable/product_left_border"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+
+        <TextView
+            android:id="@+id/txtProductFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:gravity="center"
+
+            android:drawableLeft="@drawable/ic_filter"
+            android:drawableStart="@drawable/ic_filter"
+
+            />
+
+
+    </LinearLayout>
+
+
+    <!-- <TextView
+         android:id="@+id/txtBorder"
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/lightGrey"
+         android:layout_below="@id/ProductLinearLayout"/>-->
+
+
+    <!-- <LinearLayout
+         android:id="@+id/LinearShowSlectedText"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:weightSum="2"
+         android:layout_marginBottom="10dp"
+         android:layout_below="@id/ProductLinearLayout">
+
+         <TextView
+             android:id="@+id/txtSort"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+
+             android:textSize="15sp"
+             android:textColor="@color/colorPrimary"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:text="Relevance"
+
+             />
+
+
+         <TextView
+             android:id="@+id/txtFilter"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textSize="15sp"
+             android:textColor="@color/colorPrimary"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:text="0 Selected"
+             />
+
+     </LinearLayout>
+ -->
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ProductLinearLayout">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/tour_Prodcut_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false" />
+
+
+            <TextView
+                android:id="@+id/txtNoProdcutFilter"
+                android:textSize="@dimen/filter_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGrey"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="No Tours "
+                android:layout_marginTop="100dp" />
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

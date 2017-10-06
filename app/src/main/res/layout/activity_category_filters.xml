@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar android:id="@+id/FilterToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tour_filter_btn_layout">
+        <LinearLayout
+
+            android:id="@+id/linearFilterLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/tour_Filter_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_above="@+id/tour_filter_btn_layout" />
+
+
+            <TextView
+                android:id="@+id/txtNoFilter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Filter"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="left"
+                android:visibility="gone"
+                android:textSize="@dimen/category_heading" />
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/tour_filter_btn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1"
+        android:layout_marginBottom="5dp">
+
+
+        <Button
+            android:id="@+id/btnFilterReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="0.50"
+            android:background="@color/white"
+            android:text="Reset" />
+
+        <Button
+            android:id="@+id/btnFilterApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="0.50"
+            android:background="@color/colorPrimary"
+            android:text="Apply"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+</RelativeLayout>

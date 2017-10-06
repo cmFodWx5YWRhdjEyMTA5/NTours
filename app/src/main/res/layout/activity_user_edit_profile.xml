@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar android:id="@+id/changeToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:gravity="center"
+            android:textSize="@dimen/filter_heading"
+            android:textColor="@color/colorPrimary"
+
+            />
+
+        <EditText
+            android:id="@+id/input_changeFname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="@string/name_hint"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/rect_edit_text"
+            android:padding="10dip"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="20dip" />
+
+        <EditText
+            android:id="@+id/input_changeLname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="@string/lname_hint"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/rect_edit_text"
+            android:padding="10dip"
+            android:layout_marginBottom="10dip" />
+
+
+        <EditText
+            android:id="@+id/input_changeTelephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="@string/contactnumber_hint"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/rect_edit_text"
+            android:padding="10dip"
+            android:layout_marginBottom="10dip" />
+
+
+        <EditText
+            android:id="@+id/input_changeEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email_hint"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/rect_edit_text"
+            android:padding="10dip"
+            android:layout_marginBottom="10dip" />
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnchangeSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="Submit"
+                android:elevation="1dp"
+                android:textColor="@color/white" />
+
+            <ProgressBar
+                android:id="@+id/changePrgrs"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@+id/btnchangeSubmit"
+                android:layout_alignTop="@+id/btnchangeSubmit"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="true"
+                android:elevation="2dp"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

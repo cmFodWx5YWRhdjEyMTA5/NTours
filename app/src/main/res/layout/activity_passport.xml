@@ -1,0 +1,274 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/PassportToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Passport Enquiry"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/filter_heading"
+
+                />
+
+
+            <!--Name-->
+            <EditText
+                android:id="@+id/input_Passportname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="20dip"
+                android:background="@drawable/rect_edit_text"
+                android:hint="Enter Name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="10dip"
+                android:textColorHint="@color/gray" />
+
+
+            <EditText
+                android:id="@+id/input_Passportcontact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:background="@drawable/rect_edit_text"
+                android:hint="@string/contactnumber_hint"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:padding="10dip"
+                android:textColorHint="@color/gray" />
+
+            <EditText
+                android:id="@+id/input_Passportemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:background="@drawable/rect_edit_text"
+                android:hint="@string/Email"
+                android:maxLines="1"
+                android:inputType="textEmailAddress"
+                android:padding="10dip"
+                android:textColorHint="@color/gray" />
+
+
+            <RelativeLayout
+                android:id="@+id/layout_Passport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+
+                    android:id="@+id/autoComplete_PaasportCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dip"
+                    android:background="@drawable/rect_edit_text"
+                    android:completionThreshold="1"
+                    android:dropDownAnchor="@id/layout_Passport"
+                    android:ems="10"
+                    android:hint="@string/city_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dip"
+                    android:textColorHint="@color/gray">
+
+                </AutoCompleteTextView>
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/filter_heading"
+                android:textColor="@color/colorPrimary"
+                android:text="Attach Document "
+                android:paddingLeft="10dip"
+                android:gravity="left" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:background="@drawable/rect_edit_text">
+
+
+                <TextView
+                    android:id="@+id/txtAadhar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aadhar Card"
+                    android:textSize="17sp"
+
+                    />
+
+
+                <TextView
+                    android:id="@+id/txtAadharCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtAadharAttach"
+                    android:layout_toStartOf="@+id/txtAadharAttach"
+                    android:background="@drawable/ic_cancel"
+                    android:visibility="invisible" />
+
+
+                <TextView
+                    android:id="@+id/txtAadharAttach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_attach" />
+
+
+                <TextView
+                    android:id="@+id/txtBank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtAadhar"
+                    android:layout_marginTop="10dp"
+                    android:text="Bank Passbook"
+                    android:textSize="17sp" />
+
+
+                <TextView
+                    android:id="@+id/txtBankCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtAadharCancel"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtBankAttach"
+                    android:layout_toStartOf="@+id/txtBankAttach"
+                    android:background="@drawable/ic_cancel"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/txtBankAttach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/txtAadharAttach"
+
+                    android:background="@drawable/ic_attach" />
+
+
+                <TextView
+                    android:id="@+id/txtMarksheet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtBank"
+                    android:layout_marginTop="10dp"
+                    android:text="10th/12th Marksheet"
+                    android:textSize="17sp" />
+
+
+                <TextView
+                    android:id="@+id/txtMarksheetCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtBankCancel"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtMarksheetAttach"
+                    android:layout_toStartOf="@+id/txtMarksheetAttach"
+                    android:background="@drawable/ic_cancel"
+                    android:visibility="invisible" />
+
+
+                <TextView
+                    android:id="@+id/txtMarksheetAttach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/txtBankAttach"
+                    android:background="@drawable/ic_attach" />
+
+
+                <TextView
+                    android:id="@+id/txtBirth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtMarksheet"
+                    android:layout_marginTop="10dp"
+                    android:text="Birth Certificate / \nLeaving Certificate / \nPan Card"
+                    android:textSize="17sp" />
+
+
+                <TextView
+                    android:id="@+id/txtBirthCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtMarksheetCancel"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtBirthAttach"
+                    android:layout_toStartOf="@+id/txtBirthAttach"
+                    android:background="@drawable/ic_cancel"
+                    android:layout_marginTop="20dp"
+                    android:visibility="invisible" />
+
+
+                <TextView
+                    android:id="@+id/txtBirthAttach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/txtMarksheetAttach"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_attach" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_PaasportSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Submit"
+                    android:textColor="@color/white"
+
+                    />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
+
+    <!--tools:context="com.namohtours.Activity.Passport"-->

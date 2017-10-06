@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    android:fitsSystemWindows="true">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location"
+                android:layout_marginTop="60dp"
+
+                />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@id/imageView4"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="@dimen/category_heading"
+                android:text="Where ?" />
+
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_below="@id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="@dimen/filter_heading"
+                android:text="@string/search_txt" />
+
+
+            <org.cryse.widget.persistentsearch.PersistentSearchView
+                android:layout_marginTop="30dp"
+                android:id="@+id/PersistentSearch"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:persistentSV_logoDrawable="@mipmap/ic_search"
+                app:persistentSV_homeButtonColor="@color/white"
+                app:persistentSV_searchTextColor="?android:textColorPrimary"
+                app:persistentSV_editTextColor="?android:textColorPrimary"
+                app:persistentSV_editHintText="Search"
+                app:persistentSV_editHintTextColor="@color/colorPrimary"
+                app:persistentSV_displayMode="toolbar"
+                app:persistentSV_homeButtonMode="arrow"
+                app:persistentSV_searchCardElevation="2dp"
+                app:persistentSV_customToolbarHeight="70dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activity.TravelInsurance"
+    android:orientation="vertical">
+
+    <!--
+        <include android:id="@+id/enquiryToolbar"
+            layout="@layout/toolbar"></include>-->
+
+
+    <android.support.v7.widget.Toolbar android:id="@+id/TravelToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/txtTravelEnqery"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Travel Insurance Enquiry"
+                android:gravity="center"
+                android:textSize="@dimen/filter_heading"
+                android:textColor="@color/colorPrimary"
+
+                />
+
+
+            <EditText
+                android:id="@+id/input_TravelName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Name"
+                android:textColorHint="@color/gray"
+                android:inputType="text"
+                android:maxLines="1"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="20dip" />
+
+
+            <EditText
+                android:id="@+id/input_TravelPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contactnumber_hint"
+                android:textColorHint="@color/gray"
+                android:inputType="number"
+                android:maxLines="1"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="10dip" />
+
+
+            <EditText
+                android:id="@+id/input_TravelEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Email"
+                android:maxLines="1"
+                android:textColorHint="@color/gray"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="10dip" />
+
+
+            <EditText
+                android:id="@+id/input_TravelCountries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Travelling Countries"
+                android:textColorHint="@color/gray"
+                android:inputType="text"
+                android:maxLines="1"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="20dip" />
+
+
+            <EditText
+                android:id="@+id/input_TravelNoOfTravellers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="No. of Travellers"
+                android:textColorHint="@color/gray"
+                android:inputType="text"
+                android:maxLines="1"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="20dip" />
+
+
+            <EditText
+                android:id="@+id/input_TravelNoOfDays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="No. of Days"
+                android:textColorHint="@color/gray"
+                android:inputType="text"
+                android:maxLines="1"
+                android:background="@drawable/rect_edit_text"
+                android:padding="10dip"
+                android:layout_marginBottom="20dip" />
+
+
+            <Button
+                android:id="@+id/btnTravelEnquiry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:text="Submit"
+                android:layout_marginBottom="50dp" />
+            <!--
+      -->
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
