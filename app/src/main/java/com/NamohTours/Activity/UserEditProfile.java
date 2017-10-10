@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.ProgressBar;
 import com.NamohTours.Model.UserEditProfileResponse;
 import com.NamohTours.R;
 import com.NamohTours.Service.ConnectionDetector;
+import com.NamohTours.Service.ValidationToolBox;
 import com.NamohTours.rest.ApiClient;
 import com.NamohTours.rest.ApiInterface;
 
@@ -50,6 +52,7 @@ public class UserEditProfile extends AppCompatActivity {
 
 
     private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,91 +111,141 @@ public class UserEditProfile extends AppCompatActivity {
                 if (cd.isConnectingToInternet(getApplicationContext())) {
 
 
-                    inputFname.setEnabled(false);
-                    inputLname.setEnabled(false);
-                    inputTelephone.setEnabled(false);
-                    inputEmail.setEnabled(false);
-                    progressBar.setVisibility(View.VISIBLE);
-
-                    Call<UserEditProfileResponse> call = apiService.editProfile(restoretoken, new UserEditProfileResponse(email, firstname, lastname, telephone));
+                    boolean isValidFirst = ValidationToolBox.validateFirstName(firstname);
+                    boolean isValidLastName = ValidationToolBox.validateLastName(lastname);
+                    boolean isValidContact = ValidationToolBox.validateMobNo(telephone);
+                    boolean isValidEmail = ValidationToolBox.validateEmailId(email);
 
 
-                    call.enqueue(new Callback<UserEditProfileResponse>() {
-                        @Override
-                        public void onResponse(Call<UserEditProfileResponse> call, Response<UserEditProfileResponse> response) {
-
-                            UserEditProfileResponse registerResponse = response.body();
+                    if ((!(TextUtils.isEmpty(firstname))) && (!(TextUtils.isEmpty(lastname))) && (!(TextUtils.isEmpty(telephone))) && (!(TextUtils.isEmpty(email)))) {
 
 
-                            Boolean sucess;
-                            String statuscode;
-                            UserEditProfileResponse response1;
+                        if (isValidFirst) {
+
+                            if (isValidLastName) {
+
+                                if (isValidContact) {
+
+                                    if (isValidEmail) {
 
 
-                            if (registerResponse.getSuccess() != null) {
+                                        inputFname.setEnabled(false);
+                                        inputLname.setEnabled(false);
+                                        inputTelephone.setEnabled(false);
+                                        inputEmail.setEnabled(false);
+                                        progressBar.setVisibility(View.VISIBLE);
 
-                                sucess = registerResponse.getSuccess();
-
-                                if (sucess) {
-
-                                    // Log.d(TAG , "Sucessful Data First Name : " +response1.getFirstName());
-
-
-                                    progressBar.setVisibility(View.GONE);
-                                    Snackbar.make(btnSubmit, "Profile Updated Successfully", Snackbar.LENGTH_LONG).show();
-
-                                    Intent changePassword = new Intent(UserEditProfile.this, Account.class);
-                                    startActivity(changePassword);
-                                    finish();
+                                        Call<UserEditProfileResponse> call = apiService.editProfile(restoretoken, new UserEditProfileResponse(email, firstname, lastname, telephone));
 
 
-                                } else {
+                                        call.enqueue(new Callback<UserEditProfileResponse>() {
+                                            @Override
+                                            public void onResponse(Call<UserEditProfileResponse> call, Response<UserEditProfileResponse> response) {
+
+                                                UserEditProfileResponse registerResponse = response.body();
 
 
-                                    inputFname.setEnabled(true);
-                                    inputLname.setEnabled(true);
-                                    inputTelephone.setEnabled(true);
-                                    inputEmail.setEnabled(true);
-                                    progressBar.setVisibility(View.GONE);
-                                    Snackbar.make(btnSubmit, "Profile Not Updated ", Snackbar.LENGTH_LONG).show();
-                                    if ((response1 = registerResponse.getWarning()) != null)
-
-                                    {
-                                        if ((response1.getWarning()) != null) {
-                                            Snackbar.make(btnSubmit, response1.getWarning().toString(), Snackbar.LENGTH_LONG).show();
-                                        }
+                                                Boolean sucess;
+                                                String statuscode;
+                                                UserEditProfileResponse response1;
 
 
+                                                if (registerResponse.getSuccess() != null) {
+
+                                                    sucess = registerResponse.getSuccess();
+
+                                                    if (sucess) {
+
+                                                        // Log.d(TAG , "Sucessful Data First Name : " +response1.getFirstName());
+
+
+                                                        progressBar.setVisibility(View.GONE);
+                                                        Snackbar.make(btnSubmit, "Profile Updated Successfully", Snackbar.LENGTH_LONG).show();
+
+                                                        Intent changePassword = new Intent(UserEditProfile.this, Account.class);
+                                                        startActivity(changePassword);
+                                                        finish();
+
+
+                                                    } else {
+
+
+                                                        inputFname.setEnabled(true);
+                                                        inputLname.setEnabled(true);
+                                                        inputTelephone.setEnabled(true);
+                                                        inputEmail.setEnabled(true);
+                                                        progressBar.setVisibility(View.GONE);
+                                                        Snackbar.make(btnSubmit, "Profile Not Updated ", Snackbar.LENGTH_LONG).show();
+                                                        if ((response1 = registerResponse.getWarning()) != null)
+
+                                                        {
+                                                            if ((response1.getWarning()) != null) {
+                                                                Snackbar.make(btnSubmit, response1.getWarning().toString(), Snackbar.LENGTH_LONG).show();
+                                                            }
+
+
+                                                        }
+                                                    }
+
+                                                }
+
+
+                                                if ((statuscode = registerResponse.getStatusCode()) != null) {
+                                                    if (statuscode.equals("401")) {
+                                                        inputFname.setEnabled(true);
+                                                        inputLname.setEnabled(true);
+                                                        inputTelephone.setEnabled(true);
+                                                        inputEmail.setEnabled(true);
+                                                        progressBar.setVisibility(View.GONE);
+                                                        Snackbar.make(btnSubmit, registerResponse.getStatusText(), Snackbar.LENGTH_LONG).show();
+                                                    }
+                                                }
+
+
+                                            }
+
+
+                                            @Override
+                                            public void onFailure(Call<UserEditProfileResponse> call, Throwable t) {
+                                                progressBar.setVisibility(View.GONE);
+
+                                                inputEmail.setEnabled(true);
+                                                progressBar.setVisibility(View.GONE);
+
+                                            }
+                                        });
+
+
+                                    } else {
+                                        // Invalid Email Id
+                                        inputEmail.setError(getResources().getString(R.string.invalid_email));
                                     }
+
+                            } else {
+                                    // Invalid Contact Number
+
+                                    inputTelephone.setError(getResources().getString(R.string.invalid_mobile));
+
                                 }
 
+                            } else {
+                                // Invalid Last Name
+                                inputLname.setError(getResources().getString(R.string.invalid_lname));
                             }
 
 
-                            if ((statuscode = registerResponse.getStatusCode()) != null) {
-                                if (statuscode.equals("401")) {
-                                    inputFname.setEnabled(true);
-                                    inputLname.setEnabled(true);
-                                    inputTelephone.setEnabled(true);
-                                    inputEmail.setEnabled(true);
-                                    progressBar.setVisibility(View.GONE);
-                                    Snackbar.make(btnSubmit, registerResponse.getStatusText(), Snackbar.LENGTH_LONG).show();
-                                }
-                            }
+                        } else {
+                            // Invalid First Name
 
-
+                            inputFname.setError(getResources().getString(R.string.invalid_fname));
                         }
 
 
-                        @Override
-                        public void onFailure(Call<UserEditProfileResponse> call, Throwable t) {
-                            progressBar.setVisibility(View.GONE);
+                    } else {
+                        Snackbar.make(btnSubmit, "Enter all details", Snackbar.LENGTH_LONG).show();
+                    }
 
-                            inputEmail.setEnabled(true);
-                            progressBar.setVisibility(View.GONE);
 
-                        }
-                    });
 
 
                 } else {
