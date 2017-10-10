@@ -132,7 +132,7 @@ public class ProductDescription extends LeftDrawer {
     private HashMap<String, Object> optionsIds;
 
     Target target;
-    private boolean Btnflag, isOptionsAvailable;
+    private boolean Btnflag, isOptionsAvailable, isDateOptionAvaliable;
 
     public ProductDescription() {
     }
@@ -214,6 +214,7 @@ public class ProductDescription extends LeftDrawer {
 
         Btnflag = false;
         isOptionsAvailable = false;
+        isDateOptionAvaliable = false;
 
         if ((productSpecialPrice != null) || (productPrice != null)) {
             if (!(productSpecialPrice.equals("false"))) {
@@ -253,11 +254,14 @@ public class ProductDescription extends LeftDrawer {
         }
 
 
+        // If User already clicked on btnemail then dont send mail again
         if (Btnflag) {
             btnEnquireForThisTour.setBackgroundColor(getResources().getColor(R.color.gray));
-            btnEnquireForThisTour.setEnabled(false);
-            btnEnquireForThisTour.setClickable(false);
-        } else {
+
+        }
+
+        //  else send mail
+        else {
             btnEnquireForThisTour.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             btnEnquireForThisTour.setEnabled(true);
             btnEnquireForThisTour.setClickable(true);
@@ -342,6 +346,15 @@ public class ProductDescription extends LeftDrawer {
 
                                 for (int i = 0; i < siz; i++) {
 
+
+                                    // If Date options if available then show
+                                    // FOR DATE
+                                    if (registerResponse.getData().getTourProductOptionsResponses().get(i).getType().equals("date")) {
+                                        isDateOptionAvaliable = true;
+                                        edtdate = registerResponse.getData().getTourProductOptionsResponses().get(i).getProduct_option_id();
+                                        optionsIds.put(edtdate, null);
+
+                                    }
 
                                     // FOR radio , dropdown
                                     if (registerResponse.getData().getTourProductOptionsResponses().get(i).getType().equals("select")) {
@@ -483,13 +496,6 @@ public class ProductDescription extends LeftDrawer {
 
                                                         }
 
-
-
-                                                       /* } else {
-
-                                                        }*/
-
-
                                                     } else {
                                                         // DO NOTHING
 
@@ -507,12 +513,20 @@ public class ProductDescription extends LeftDrawer {
                                     // if loop (select)
 
 
+                                    /*// If Date options if available then show
                                     // FOR DATE
-                                    if (registerResponse.getData().getTourProductOptionsResponses().get(i).getType().equals("date")) {
+                                    if (registerResponse.getData().getTourProductOptionsResponses().get(i).getType().equals("date"))
+                                    {
                                         edtdate = registerResponse.getData().getTourProductOptionsResponses().get(i).getProduct_option_id();
                                         optionsIds.put(edtdate, null);
 
                                     }
+
+                                    // else dont show date edit text
+                                    else
+                                    {
+                                        Log.e(TAG, "onResponse: ----------don't show date because there is no need of date field ----");
+                                    }*/
 
 
                                     // FOR CHECKBOX
@@ -638,6 +652,19 @@ public class ProductDescription extends LeftDrawer {
                                 // end of for loop
 
 
+                                //-----------------------------------------------------------------------------------------------
+
+
+                                // If DateFlag is Not True then Invisible DateField
+                                // If Date is not Available then don't show Date Edit Text
+
+                                if (!(isDateOptionAvaliable)) {
+                                    // Log.e(TAG, "onResponse: Date is Not Avaliable here ..... ");
+
+                                    edtDate.setVisibility(View.INVISIBLE);
+                                }
+
+
                                 // get Product Itinerary Images list
                                 if (response.body().getData().getOriginal_imagesList() != null) {
 
@@ -741,15 +768,12 @@ public class ProductDescription extends LeftDrawer {
 
 
                         if (Btnflag) {
-                            // you Already Send Enquiry for this Product
-
-                            Snackbar.make(btnEnquireForThisTour, "You already send enquiry for this product !", Snackbar.LENGTH_LONG).show();
+                            // You Already Send Enquiry for this Product
+                            Snackbar.make(btnEnquireForThisTour, "Enquiry already send", Snackbar.LENGTH_LONG).show();
                         } else {
+                            // Show Enquiry Dialog
                             showEnqDialog();
                         }
-
-
-
 
                     }
                 });
@@ -771,7 +795,6 @@ public class ProductDescription extends LeftDrawer {
                                 if (Integer.parseInt(StockQty) >= Integer.parseInt(edtqty)) {
 
                                     AddToCart(String.valueOf(product_id), edtqty, optionsIds);
-
 
                                 }
 
@@ -1316,6 +1339,8 @@ public class ProductDescription extends LeftDrawer {
                 Snackbar.make(recyclerView, "Thanks,We will contact you shortly!", Snackbar.LENGTH_LONG).show();
 
                 Btnflag = true;
+                btnEnquireForThisTour.setBackgroundColor(getResources().getColor(R.color.gray));
+
 
 
 

@@ -138,7 +138,6 @@ public class DBManager {
             contentValues.put(DatabaseHelper.PRODUCT_ID, product_id);
             database.insert(DatabaseHelper.WISHTABLE_NAME, null, contentValues);
 
-            Log.e("Insert ", "Insert Product" + product_id);
             return false;
         }
     }

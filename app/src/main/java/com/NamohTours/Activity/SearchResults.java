@@ -100,8 +100,6 @@ public class SearchResults extends AppCompatActivity {
         //Creating Api Interface
         final ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        Log.e(TAG, "Search Text : " + searchQuery);
-
 
         searchList = new ArrayList<TourProductDetailResponse>();
         searchResponse = new TourProductResponse();
@@ -130,13 +128,11 @@ public class SearchResults extends AppCompatActivity {
 
                             if (sucess.equals("true")) {
 
-                                Log.e(TAG, "Response: " + response.raw());
 
                                 searchList = response.body().getData();
 
                                 tourProgress.setVisibility(View.GONE);
 
-                                //Log.e(TAG, "Call : " + call.request().url());
                                 recyclerView.setAdapter(new ProductAdapter(searchList, R.layout.list_item_tour_product, SearchResults.this, new ClickListener() {
                                     @Override
                                     public void onClick(int position) {
@@ -170,42 +166,10 @@ public class SearchResults extends AppCompatActivity {
 
                                             @Override
                                             public void onClick(int position) {
-                                                // Snackbar.make(recyclerView,"Product added to wishlist!",Snackbar.LENGTH_LONG).show();
 
                                             }
 
                                         }));
-
-
-
-                               /* @Override
-                                public void onClick(int position) {
-
-
-                                    TourProductDetailResponse res = searchList.get(position);
-
-
-                                    if(res !=null)
-                                    {
-
-
-                                        String product_id = res.getId();
-
-                                        Intent description = new Intent(SearchResults.this, ProductDescription.class);
-                                        description.putExtra("product_id",product_id);
-                                        description.putExtra("Sub","Search");
-                                        startActivity(description);
-                                       // finish();
-
-
-                                    }
-
-
-
-
-                                }
-                            });*/
-
 
                             }
 
@@ -226,7 +190,7 @@ public class SearchResults extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<TourProductResponse> call, Throwable t) {
 
-                        Log.e(TAG, "Error : " + t.toString());
+
                         tourProgress.setVisibility(View.GONE);
 
                     }
@@ -240,36 +204,6 @@ public class SearchResults extends AppCompatActivity {
 
             }
 
-
-            // RecyclerView On OItem click goto ProductDescription
-/*
-
-            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
-                @Override
-                public void onClick(View view, int position) {
-
-                    TourProductDetailResponse sample = searchResponse.getData().get(position);
-
-                    String desciption = sample.getDescription();
-                    String product_id = sample.getId();
-
-                    Intent description = new Intent(SearchResults.this, ProductDescription.class);
-                    description.putExtra("product_id",product_id);
-                    description.putExtra("Sub","Search");
-                    startActivity(description);
-                    finish();
-
-
-                }
-
-                @Override
-                public void onLongClick(View view, int position) {
-
-                }
-            }));
-
-
-*/
 
 
         }
@@ -293,16 +227,6 @@ public class SearchResults extends AppCompatActivity {
     public void onBackPressed() {
 
         finish();
-
-
-//        super.onBackPressed();
-
-        // Fragment fragment = new Fragment();
-
-
-       /* Intent search = new Intent(SearchResults.this,Search.class);
-        startActivity(search);
-        finish();*/
 
     }
 }

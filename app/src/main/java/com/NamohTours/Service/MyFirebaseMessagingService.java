@@ -85,37 +85,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void handleDataMessage(JSONObject json) {
-        Log.e(TAG, "push json: " + json.toString());
+
 
         try {
 
 
-            Log.e(TAG, "Message :" + json.getString("message"));
             String message = json.getString("message");
-          /*  String tempmessage = json.getString("message");
 
-            //= tempmessage.substring(tempmessage.indexOf("#",tempmessage.lastIndexOf("#")));
-
-            String bold = tempmessage.substring(tempmessage.indexOf("#"),tempmessage.lastIndexOf("#"));
-
-            Log.e(TAG,"Bold Text : "+bold);
-
-            String normal = tempmessage.substring(tempmessage.lastIndexOf("#")+1);
-
-            String Norm = "\n"+normal;
-
-
-            Log.e(TAG, "handleDataMessage: Normal String "+Norm);
-
-            SpannableString ss1=  new SpannableString(bold+Norm);
-            ss1.setSpan(new StyleSpan(Typeface.BOLD), 1, bold.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-
-            Log.e(TAG, "handleDataMessage: Sapn :"+ss1);
-            String message = ss1.toString();
-
-
-            Log.e(TAG, "handleDataMessage: Real : "+message);*/
             String url = json.getString("url");
             //  String url = "";
 
@@ -138,9 +114,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             dbManager.close();
 
         } catch (JSONException e) {
-            Log.e(TAG, "Json Exception: " + e.getMessage());
+
         } catch (Exception e) {
-            Log.e(TAG, "Exception: " + e.getMessage());
+
         }
     }
 

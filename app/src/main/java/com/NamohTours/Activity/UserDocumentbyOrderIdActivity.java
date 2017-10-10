@@ -394,13 +394,9 @@ public class UserDocumentbyOrderIdActivity extends AppCompatActivity {
                 output.close();
                 input.close();
 
-                     /*else {
-                        Log.e(TAG, "doInBackground: File Already Exists :: ");
-                    }*/
-
 
             } catch (Exception e) {
-                Log.e("Error: ", e.getMessage());
+
             }
 
             return null;

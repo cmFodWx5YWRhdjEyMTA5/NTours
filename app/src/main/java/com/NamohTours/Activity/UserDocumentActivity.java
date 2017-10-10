@@ -217,7 +217,7 @@ public class UserDocumentActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<GetUserUploadDocumentsResponse> call, Throwable t) {
 
-                    Log.e(TAG, "onFailure: " + t.toString());
+
                     Snackbar.make(custDocs, "Sorry , Please Try Later !", Snackbar.LENGTH_LONG).show();
 
                 }
@@ -390,13 +390,9 @@ public class UserDocumentActivity extends AppCompatActivity {
                 output.close();
                 input.close();
 
-                     /*else {
-                        Log.e(TAG, "doInBackground: File Already Exists :: ");
-                    }*/
-
 
             } catch (Exception e) {
-                Log.e("Error: ", e.getMessage());
+
             }
 
             return null;

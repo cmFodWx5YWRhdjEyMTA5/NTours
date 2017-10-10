@@ -165,7 +165,7 @@ public class Account extends AppCompatActivity {
             @Override
             public void onFailure(Call<UserAccountResponse> call, Throwable t) {
 
-                // Log.e(TAG, "Error : " + t.toString());
+
             }
         });
 

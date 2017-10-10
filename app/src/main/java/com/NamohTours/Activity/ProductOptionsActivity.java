@@ -32,7 +32,6 @@ public class ProductOptionsActivity extends AppCompatActivity {
         sample = new ArrayList<TourProductOptionsResponse>();
         sample = (ArrayList<TourProductOptionsResponse>) getIntent().getSerializableExtra("arr");
 
-        Log.e(TAG, "onCreate: Sample :: " + sample.toArray());
 
 
     }

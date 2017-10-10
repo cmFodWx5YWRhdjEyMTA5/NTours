@@ -320,7 +320,6 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
                 {
 
-                    // Log.e(TAG, "Response : " + response1);
 
                     if (response1.equals("true")) {
 
@@ -354,7 +353,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
                 progressdialog.dismiss();
                 Snackbar.make(txtTerms, "Sorry , Please Try Later..!!", Snackbar.LENGTH_LONG).show();
-                // Log.e(TAG, "Error : " + t.toString());
+
             }
         });
 

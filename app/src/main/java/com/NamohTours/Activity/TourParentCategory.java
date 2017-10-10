@@ -175,7 +175,6 @@ public class TourParentCategory extends LeftDrawer {
                                     public void onClick(int position) {
 
 
-                                        Log.e(TAG, "onResponse: Product Id " + movies.get(position).getCategory_id());
 
                                         if (cd.isConnectingToInternet(getApplicationContext())) {
                                             TourCategoryDetailResponse res = movies.get(position);
@@ -460,8 +459,6 @@ public class TourParentCategory extends LeftDrawer {
 
                 {
 
-                    // Log.e(TAG, "Response : " + response1);
-
                     if (response1.equals("true")) {
 
                         progressdialog.dismiss();
@@ -494,7 +491,7 @@ public class TourParentCategory extends LeftDrawer {
             public void onFailure(Call<UserLoginRegisterResponse> call, Throwable t) {
 
                 progressdialog.dismiss();
-                // Log.e(TAG, "Error : " + t.toString());
+
             }
         });
 

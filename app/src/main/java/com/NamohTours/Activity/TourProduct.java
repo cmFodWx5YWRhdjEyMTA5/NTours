@@ -222,7 +222,6 @@ public class TourProduct extends LeftDrawer {
                                 tourProgress.setVisibility(View.GONE);
 
 
-                                //Log.e(TAG, "Call : " + call.request().url());
                                 recyclerView.setAdapter(new ProductAdapter(movies, R.layout.list_item_tour_product, TourProduct.this, new ClickListener() {
                                     @Override
                                     public void onClick(int position) {
@@ -272,7 +271,7 @@ public class TourProduct extends LeftDrawer {
                                         {
                                             dbManager.inserWishlist(product_id);
 
-                                            Log.e(TAG,"Cursor Values : "+dbManager.getWish());
+
 
                                         }*/
 
@@ -392,13 +391,12 @@ public class TourProduct extends LeftDrawer {
 
                             if (sucess.equals("true")) {
 
-                                Log.e(TAG, "Response: " + response.raw());
 
                                 movies = response.body().getData();
 
                                 tourProgress.setVisibility(View.GONE);
 
-                                //Log.e(TAG, "Call : " + call.request().url());
+
                                 recyclerView.setAdapter(new ProductAdapter(movies, R.layout.list_item_tour_product, TourProduct.this, new ClickListener() {
                                     @Override
                                     public void onClick(int position) {
@@ -741,7 +739,7 @@ public class TourProduct extends LeftDrawer {
                 sub.putExtra("cat_id",Parent_Category_Id);
                 startActivity(sub);
                 finish();
-                Log.e(TAG,"Goto sub Activity");
+
 
 
 
@@ -757,7 +755,7 @@ public class TourProduct extends LeftDrawer {
             subsub.putExtra("parent_id",Parent_Category_Id);
             startActivity(subsub);
             finish();
-            Log.e(TAG,"Goto sub sub Activity");
+
         }
 
         if(SubCategory.equals("Parent"))
@@ -794,7 +792,6 @@ public class TourProduct extends LeftDrawer {
 
                 {
 
-                    // Log.e(TAG, "Response : " + response1);
 
                     if (response1.equals("true")) {
 
@@ -827,7 +824,7 @@ public class TourProduct extends LeftDrawer {
             public void onFailure(Call<UserLoginRegisterResponse> call, Throwable t) {
 
                 progressdialog.dismiss();
-                // Log.e(TAG, "Error : " + t.toString());
+
             }
         });
 
@@ -994,7 +991,7 @@ public class TourProduct extends LeftDrawer {
             @Override
             public void onFailure(Call<TourProductResponse> call, Throwable t) {
 
-                // Log.e(TAG, "Error : " + t.toString());
+
             }
         });
 

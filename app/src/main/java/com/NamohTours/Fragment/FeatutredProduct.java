@@ -169,7 +169,7 @@ public class FeatutredProduct extends Fragment {
         // load gif in webview
         /*web = (WebView)rootView.findViewById(R.id.FeturedWeb);
         web.clearCache(false);
-        Log.e("FP","Webview Calling ");
+
         web.setWebViewClient(new WebViewClient());
         web.loadUrl("file:///android_asset/resize.gif");
 
@@ -454,9 +454,6 @@ public class FeatutredProduct extends Fragment {
                 if ((response1 = registerResponse.getSuccess()) != null)
 
                 {
-
-                    // Log.e(TAG, "Response : " + response1);
-
                     if (response1.equals("true")) {
 
                         progressdialog.dismiss();
@@ -470,7 +467,6 @@ public class FeatutredProduct extends Fragment {
                         editor1.remove(TOKEN_EXPIRY);
                         editor1.commit();
 
-                        Log.e(TAG, "Logout  : " + response1);
                         //Snackbar.make(recyclerView,"Logout Successfully",Snackbar.LENGTH_SHORT).show();
                         Intent log = new Intent((AppCompatActivity) getActivity(), Login.class);
                         startActivity(log);
@@ -490,7 +486,7 @@ public class FeatutredProduct extends Fragment {
 
                 progressdialog.dismiss();
                 Snackbar.make(mRecylerView, "Sorry , Please Try Later..!!", Snackbar.LENGTH_LONG).show();
-                // Log.e(TAG, "Error : " + t.toString());
+
             }
         });
 

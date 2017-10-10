@@ -40,10 +40,6 @@ public class ApiClient {
              */
 
 
-            File httpCacheDirectory = new File(Environment.getDownloadCacheDirectory(), "HttpCache");// Here to facilitate the file directly on the SD Kagan catalog HttpCache in ， Generally put in context.getCacheDir() in
-            int cacheSize = 10 * 1024 * 1024;// Set cache file size 10M
-            Cache cache = new Cache(httpCacheDirectory, cacheSize);
-
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -52,7 +48,6 @@ public class ApiClient {
             httpClient.addInterceptor(logging);
             httpClient.connectTimeout(300, TimeUnit.SECONDS);
             httpClient.readTimeout(300, TimeUnit.SECONDS);
-            httpClient.cache(cache);
 
 
             retrofit = new Retrofit.Builder()

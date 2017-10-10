@@ -397,7 +397,6 @@ public class SearchFragment extends Fragment implements PersistentSearchView.Sea
 
                 {
 
-                    // Log.e(TAG, "Response : " + response1);
 
                     if (response1.equals("true")) {
 
@@ -412,7 +411,6 @@ public class SearchFragment extends Fragment implements PersistentSearchView.Sea
                         editor1.remove(TOKEN_EXPIRY);
                         editor1.commit();
 
-                        Log.e(TAG, "Logout  : " + response1);
                         //Snackbar.make(recyclerView,"Logout Successfully",Snackbar.LENGTH_SHORT).show();
                         Intent log = new Intent((AppCompatActivity) getActivity(), Login.class);
                         startActivity(log);
@@ -431,7 +429,7 @@ public class SearchFragment extends Fragment implements PersistentSearchView.Sea
             public void onFailure(Call<UserLoginRegisterResponse> call, Throwable t) {
 
                 progressdialog.dismiss();
-                // Log.e(TAG, "Error : " + t.toString());
+
             }
         });
 

@@ -125,16 +125,8 @@ public class ChangePassword extends AppCompatActivity {
 
                             //  ChangePasswordResponse registerResponse = response.body();
 
-                            Log.e(TAG, "Response Raw :" + response.raw().request().toString());
-                            Log.e(TAG, "Response : " + response.isSuccessful());
-                            Log.e(TAG, "Url " + response.raw().request().url());
-                            // Log.e(TAG,"Response :"+response.body().getWarning().toString());
-
 
                             Boolean sucess = response.body().getSuccess();
-
-                            Log.e(TAG, "Suucessss :" + sucess);
-
 
 
                                /* progressBar.setVisibility(View.GONE);
@@ -174,8 +166,6 @@ public class ChangePassword extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<ChangePasswordResponse> call, Throwable t) {
                             progressBar.setVisibility(View.GONE);
-
-                            Log.e(TAG, "Error : " + t.toString());
 
                             inputPassword.setText("");
                             inputChangePassword.setText("");

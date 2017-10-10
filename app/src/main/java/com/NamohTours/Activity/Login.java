@@ -136,8 +136,6 @@ public class Login extends AppCompatActivity {
                                 restoretoken = token;
 
 
-                                Log.e(TAG, "Token  After get token: " + restoretoken);
-
 
                             }
 
@@ -171,7 +169,6 @@ public class Login extends AppCompatActivity {
                 regID = FirebaseInstanceId.getInstance().getToken();
                 //city = inputCity.getText().toString();
 
-                // Log.e(TAG,"Input Name : "+loginemail);
 
                 if (cd.isConnectingToInternet(getApplicationContext())) {
 
@@ -417,7 +414,6 @@ public class Login extends AppCompatActivity {
 //                                    finish();
 
 
-                                            //Log.e(TAG,"Error : "+t.toString());
                                         }
                                     });
 
@@ -630,7 +626,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onFailure(Call<UserAccountResponse> call, Throwable t) {
 
-                // Log.e(TAG, "Error : " + t.toString());
+
             }
         });
 

@@ -158,7 +158,6 @@ public class CategoryFilters extends AppCompatActivity {
                                                 for (int j = 0; j < FiltersList.size(); j++) {
 
                                                     if (FiltersList.get(j).equals(filterIDs)) {
-                                                        Log.e(TAG, "Match IDS : " + FiltersList.get(j));
 
                                                         filterList.get(i).getTourCategoryFilterGroupsDetailses().get(k).setSelected(true);
                                                         mtourProductfilterIds.add(FiltersList.get(j));
@@ -185,7 +184,6 @@ public class CategoryFilters extends AppCompatActivity {
 
                                             mtourProductfilterIds.add(item.getFilter_id());
 
-                                            Log.e(TAG, "Seleted CheckBoxs :" + secemp.trim());
 
                                         }
 

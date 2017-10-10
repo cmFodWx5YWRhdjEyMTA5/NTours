@@ -427,8 +427,6 @@ public class Registration extends AppCompatActivity {
 
                                                                                     restoretoken = token;
 
-                                                                                    Log.e(TAG, "Token  After Refresh token: " + restoretoken);
-
 
                                                                                     inputPassword.setEnabled(true);
                                                                                     inputEmail.setEnabled(true);

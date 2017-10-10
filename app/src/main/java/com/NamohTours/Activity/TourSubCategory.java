@@ -151,7 +151,6 @@ public class TourSubCategory extends LeftDrawer {
 
                                 tourProgress.setVisibility(View.GONE);
 
-                                //Log.e(TAG, "Call : " + call.request().url());
                                 recyclerView.setAdapter(new SubCategoryAdapter(movies, R.layout.list_item_tour_sub_category, TourSubCategory.this, new ClickListener() {
                                     @Override
                                     public void onClick(int position) {
@@ -404,8 +403,6 @@ public class TourSubCategory extends LeftDrawer {
 
                     if (sucess.equals("true")) {
 
-                        Log.e(TAG, "Response: " + response.raw());
-
 
                         progressdialog.dismiss();
                         Intent description = new Intent(TourSubCategory.this, TourSubSubCategory.class);
@@ -439,7 +436,7 @@ public class TourSubCategory extends LeftDrawer {
             public void onFailure(Call<TourCategoryResponse> call, Throwable t) {
 
                 progressdialog.dismiss();
-                Log.e(TAG, "Error : " + t.toString());
+
                 tourProgress.setVisibility(View.GONE);
 
 
@@ -472,7 +469,6 @@ public class TourSubCategory extends LeftDrawer {
 
                 {
 
-                    // Log.e(TAG, "Response : " + response1);
 
                     if (response1.equals("true")) {
 

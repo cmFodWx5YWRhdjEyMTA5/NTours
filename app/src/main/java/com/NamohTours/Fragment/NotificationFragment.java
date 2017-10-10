@@ -165,8 +165,6 @@ public class NotificationFragment extends Fragment implements AdapterView.OnItem
 
         final Cursor cur = (Cursor) parent.getItemAtPosition(position);
         final String url = cur.getString(cur.getColumnIndexOrThrow("url"));
-        //Log.e(TAG,"Url on Notification click :"+url);
-
 
         if (url.equals("http://www.google.com")) {
             // Not Do Anything

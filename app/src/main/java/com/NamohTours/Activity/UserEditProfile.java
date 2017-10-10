@@ -188,8 +188,6 @@ public class UserEditProfile extends AppCompatActivity {
                         public void onFailure(Call<UserEditProfileResponse> call, Throwable t) {
                             progressBar.setVisibility(View.GONE);
 
-                            Log.e(TAG, "Error : " + t.toString());
-
                             inputEmail.setEnabled(true);
                             progressBar.setVisibility(View.GONE);
 

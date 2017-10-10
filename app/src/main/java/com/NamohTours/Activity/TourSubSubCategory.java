@@ -183,7 +183,7 @@ public class TourSubSubCategory extends LeftDrawer {
 
                                 tourProgress.setVisibility(View.GONE);
 
-                                //Log.e(TAG, "Call : " + call.request().url());
+
                                 recyclerView.setAdapter(new CategoryAdapter(movies, R.layout.list_item_tour_category, TourSubSubCategory.this, new ClickListener() {
                                     @Override
                                     public void onClick(int position) {
@@ -436,7 +436,6 @@ public class TourSubSubCategory extends LeftDrawer {
 
                 {
 
-                    // Log.e(TAG, "Response : " + response1);
 
                     if (response1.equals("true")) {
 
@@ -451,7 +450,6 @@ public class TourSubSubCategory extends LeftDrawer {
                         editor1.remove(TOKEN_EXPIRY);
                         editor1.commit();
 
-                        Log.e(TAG, "Logout  : " + response1);
                         //Snackbar.make(recyclerView,"Logout Successfully",Snackbar.LENGTH_SHORT).show();
                         Intent log = new Intent(TourSubSubCategory.this, Login.class);
                         startActivity(log);
@@ -468,8 +466,6 @@ public class TourSubSubCategory extends LeftDrawer {
 
             @Override
             public void onFailure(Call<UserLoginRegisterResponse> call, Throwable t) {
-
-                // Log.e(TAG, "Error : " + t.toString());
 
                 progressdialog.dismiss();
             }

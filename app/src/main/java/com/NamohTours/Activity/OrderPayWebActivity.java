@@ -46,8 +46,6 @@ public class OrderPayWebActivity extends AppCompatActivity {
         restoretoken = prefs.getString(TOKEN_KEY, null);
         payment = prefs.getString(PAYMENT, null);
 
-        Log.e(TAG, "onCreate: PAYMENT" + payment);
-
 
         //   OnlinePayment();
 
@@ -74,10 +72,6 @@ public class OrderPayWebActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-
-                        Log.e(TAG, "onFailure: " + t.toString());
-
-                        Log.e(TAG, "onFailure: "+call.toString());
 
                     }
                 });

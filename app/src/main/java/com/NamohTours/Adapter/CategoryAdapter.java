@@ -72,7 +72,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
 
         if (products.get(position).getSubCategoryResponse() != null) {
-            // Log.e("Category" ,"Count : "+products.get(position).getSubCategoryResponse().size());
+
             holder.productTitle.setText(Html.fromHtml(products.get(position).getName()));
             holder.data.setText(String.valueOf(products.get(position).getCount()) + "  Categories");
 //            holder.txtPrice.setText(Html.fromHtml(products.get(position).getDescription()));

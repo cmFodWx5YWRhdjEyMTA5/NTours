@@ -132,7 +132,6 @@ public class ForgetPassword extends AppCompatActivity {
                 regID = FirebaseInstanceId.getInstance().getToken();
                 //city = inputCity.getText().toString();
 
-                // Log.e(TAG,"Input Name : "+loginemail);
 
                 if (cd.isConnectingToInternet(getApplicationContext())) {
 

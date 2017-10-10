@@ -70,10 +70,6 @@ public class GetToken {
                 editor.commit();
 
 
-              /*  Log.e(TAG, "Call : " + call.request().url());
-                Log.d(TAG, "Access Token : " + token);*/
-
-
             }
 
             @Override
