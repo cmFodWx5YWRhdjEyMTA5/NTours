@@ -691,8 +691,13 @@ public class LeftDrawer extends AppCompatActivity
 
         } else {
 
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                finish();
+            }
 
-            finish();
         }
 
 

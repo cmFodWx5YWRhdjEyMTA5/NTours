@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.NamohTours.Model.GetPaymentMethodResponse;
 import com.NamohTours.Model.PostPaymentMethodOption;
@@ -45,6 +46,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
     private String restoretoken, paymentMethodCode;
     private AppCompatCheckBox ChkPaymentTerms;
     private ProgressDialog progressDialog;
+    private TextView txtTermsLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class PaymentMethodActivity extends AppCompatActivity {
 
         btnPaymentContinue = (Button) findViewById(R.id.btnPaymentContinue);
         ChkPaymentTerms = (AppCompatCheckBox) findViewById(R.id.ChkPaymentTerms);
+
+        txtTermsLink = (TextView) findViewById(R.id.txtTermsLink);
 
         llPayment = (LinearLayout) findViewById(R.id.llPayment);
 
@@ -183,6 +187,18 @@ public class PaymentMethodActivity extends AppCompatActivity {
                         Snackbar.make(btnPaymentContinue, "Please select payment method, terms & conditions", Snackbar.LENGTH_LONG).show();
                     }
 
+
+                }
+            });
+
+
+            txtTermsLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent terms = new Intent(PaymentMethodActivity.this, WebUrl.class);
+                    terms.putExtra("Web", "terms");
+                    startActivity(terms);
 
                 }
             });

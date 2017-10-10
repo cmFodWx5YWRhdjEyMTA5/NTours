@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.NamohTours.R;
 import com.NamohTours.Service.ConnectionDetector;
+import com.NamohTours.Service.ValidationToolBox;
 import com.NamohTours.SmtpMail.GMailSender;
 import com.NamohTours.View.ArrayListAnySize;
 
@@ -42,21 +43,17 @@ import static com.NamohTours.Service.Prefs.UserName;
 public class Passport extends AppCompatActivity implements View.OnClickListener {
 
 
+    private static final Integer READ_EXTERNAL = 0x3;
+    private static final String TAG = Passport.class.getSimpleName();
+    AutoCompleteTextView CityautocompleteView;
+    String name, telephone, city, body, selectedimage, flagForImage, email;
+    int columnIndex;
+    String attachmentFile;
     private Uri URI = null;
     private int GALLERY = 1;
-    private static final Integer READ_EXTERNAL = 0x3;
     private EditText inputName, inputContact, inpuEmail;
     private TextView txtAttach, txtBankAttach, txtMarkSheetAttach, txtBirthCertificateAttach, txtAadharCancel, txtBankCancel, txtMarksheetCancel, txtBirthCancel;
     private Button btnSubmit;
-
-    AutoCompleteTextView CityautocompleteView;
-    String name, telephone, city, body, selectedimage, flagForImage, email;
-
-
-    private static final String TAG = Passport.class.getSimpleName();
-    int columnIndex;
-    String attachmentFile;
-
     private Toolbar toolbar;
 
     private ConnectionDetector cd;
@@ -116,6 +113,13 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
         txtMarkSheetAttach = (TextView) findViewById(R.id.txtMarksheetAttach);
 
 
+        txtAttach.setTag("Aadhar");
+        txtBankAttach.setTag("Bank");
+        txtBirthCertificateAttach.setTag("Birth");
+        txtMarkSheetAttach.setTag("Mark");
+
+
+
         txtAadharCancel = (TextView) findViewById(R.id.txtAadharCancel);
         txtBankCancel = (TextView) findViewById(R.id.txtBankCancel);
         txtMarksheetCancel = (TextView) findViewById(R.id.txtMarksheetCancel);
@@ -162,6 +166,7 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                 name = inputName.getText().toString();
                 telephone = inputContact.getText().toString();
+                email = inpuEmail.getText().toString();
 
 
                 if (cd.isConnectingToInternet(getApplicationContext())) {
@@ -169,22 +174,66 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
                     if ((!TextUtils.isEmpty(inputName.getText().toString())) && (!TextUtils.isEmpty(inputContact.getText().toString()))) {
 
 
-                        final StringBuilder body = new StringBuilder();
-                        body.append("Name :" + name);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Contact :" + telephone);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Email :" + email);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("City :" + city);
+                        boolean isValidName = ValidationToolBox.validateFullName(name);
+                        boolean isValidContact = ValidationToolBox.validateMobNo(telephone);
+
+                        if (isValidName) {
+
+                            if (isValidContact) {
+
+                                // If Email is Empty not need to validation
+                                if (TextUtils.isEmpty(email)) {
+                                    final StringBuilder body = new StringBuilder();
+                                    body.append("Name :" + name);
+                                    body.append(System.getProperty("line.separator"));
+                                    body.append("Contact :" + telephone);
+                                    body.append(System.getProperty("line.separator"));
+                                    body.append("Email :" + email);
+                                    body.append(System.getProperty("line.separator"));
+                                    body.append("City :" + city);
+
+                                    new SendMailAsync(body.toString(), attachments).execute();
+                                }
+
+                                // Else Validate Email Id
+                                else {
+
+                                    boolean isValidEmail = ValidationToolBox.validateEmailId(email);
+
+                                    if (isValidEmail) {
+                                        final StringBuilder body = new StringBuilder();
+                                        body.append("Name :" + name);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("Contact :" + telephone);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("Email :" + email);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("City :" + city);
+
+                                        new SendMailAsync(body.toString(), attachments).execute();
 
 
-                        new SendMailAsync(body.toString(), attachments).execute();
+                                    } else {
+                                        inpuEmail.setError(getResources().getString(R.string.invalid_email));
+                                    }
+
+
+                                }
+
+
+                            } else {
+                                inputContact.setError(getResources().getString(R.string.invalid_mobile));
+                            }
+
+
+                        } else {
+                            inputName.setError(getResources().getString(R.string.invalid_name));
+                        }
 
 
                     } else {
 
-                        Snackbar.make(btnSubmit, "Please enter all details ", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(btnSubmit, "Enter all details ", Snackbar.LENGTH_LONG).show();
 
                     }
                 } else {
@@ -296,8 +345,6 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
             if (data != null) {
 
                 Uri selectedImage = data.getData();
-                Log.e(TAG, "Gallery IMAGE :" + selectedImage.toString());
-
 
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
@@ -306,7 +353,6 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
                 cursor.moveToFirst();
                 columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 attachmentFile = cursor.getString(columnIndex);
-                Log.e("Attachment Path:", attachmentFile);
 
                 selectedimage = attachmentFile;
 
@@ -322,6 +368,7 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                     attachments.add(0, selectedimage);
                     txtAttach.setBackgroundResource(R.drawable.ic_checkbox);
+                    txtAttach.setTag("AadharCheck");
                     txtAadharCancel.setVisibility(View.VISIBLE);
                     Toast.makeText(Passport.this, "Document attached", Toast.LENGTH_SHORT).show();
                 }
@@ -330,6 +377,7 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                     attachments.add(1, selectedimage);
                     txtBankAttach.setBackgroundResource(R.drawable.ic_checkbox);
+                    txtBankAttach.setTag("BankCheck");
                     txtBankCancel.setVisibility(View.VISIBLE);
                     Toast.makeText(Passport.this, "Document attached", Toast.LENGTH_SHORT).show();
 
@@ -340,6 +388,7 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                     attachments.add(2, selectedimage);
                     txtMarkSheetAttach.setBackgroundResource(R.drawable.ic_checkbox);
+                    txtMarkSheetAttach.setTag("MarkCheck");
                     txtMarksheetCancel.setVisibility(View.VISIBLE);
                     Toast.makeText(Passport.this, "Document attached", Toast.LENGTH_SHORT).show();
 
@@ -350,6 +399,7 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                     attachments.add(3, selectedimage);
                     txtBirthCertificateAttach.setBackgroundResource(R.drawable.ic_checkbox);
+                    txtBirthCertificateAttach.setTag("BirthCheck");
                     txtBirthCancel.setVisibility(View.VISIBLE);
                     Toast.makeText(Passport.this, "Document attached", Toast.LENGTH_SHORT).show();
 
@@ -389,7 +439,17 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                 flagForImage = "Aadhar";
 
-                choosePhotoFromGallary();
+
+                if (txtAttach.getTag().toString().contains("Check")) {
+
+                    // If Text view tag is Check then do nothing , and texview image is checkbox then
+
+                }
+
+                //  else text view image is attach then open gallery
+                else {
+                    choosePhotoFromGallary();
+                }
 
 
                 break;
@@ -399,7 +459,16 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                 flagForImage = "Bank";
 
-                choosePhotoFromGallary();
+
+                if (txtBankAttach.getTag().toString().contains("Check")) {
+                    // If Text view tag is Check then do nothing , and texview image is checkbox then
+                }
+
+                //  else text view image is attach then open gallery
+                else {
+                    choosePhotoFromGallary();
+                }
+
 
                 break;
 
@@ -407,7 +476,15 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                 flagForImage = "Birth";
 
-                choosePhotoFromGallary();
+                if (txtBirthCertificateAttach.getTag().toString().contains("Check")) {
+                    // If Text view tag is Check then do nothing , and texview image is checkbox then
+                }
+
+
+                //  else text view image is attach then open gallery
+                else {
+                    choosePhotoFromGallary();
+                }
 
                 break;
 
@@ -415,7 +492,15 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                 flagForImage = "MarkSheet";
 
-                choosePhotoFromGallary();
+                if (txtMarkSheetAttach.getTag().toString().contains("Check")) {
+                    // If Text view tag is Check then do nothing , and texview image is checkbox then
+                }
+
+
+                //  else text view image is attach then open gallery
+                else {
+                    choosePhotoFromGallary();
+                }
 
                 break;
 
@@ -423,8 +508,11 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
             case R.id.txtAadharCancel:
 
                 attachments.remove(0);
-                txtAttach.setBackgroundResource(R.drawable.ic_attach);
+
                 txtAadharCancel.setVisibility(View.INVISIBLE);
+                txtAttach.setBackgroundResource(R.drawable.ic_attach);
+                // After removing attachment set again original tag to textview
+                txtAttach.setTag("Aadhar");
 
                 Snackbar.make(btnSubmit, "Attachment removed", Snackbar.LENGTH_LONG).show();
 
@@ -434,8 +522,12 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
             case R.id.txtBankCancel:
 
                 attachments.remove(1);
-                txtBankAttach.setBackgroundResource(R.drawable.ic_attach);
                 txtBankCancel.setVisibility(View.INVISIBLE);
+                txtBankAttach.setBackgroundResource(R.drawable.ic_attach);
+                // After removing attachment set again original tag to textview
+                txtBankAttach.setTag("Bank");
+
+
                 Snackbar.make(btnSubmit, "Attachment removed", Snackbar.LENGTH_LONG).show();
                 break;
 
@@ -446,6 +538,8 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                 txtMarksheetCancel.setVisibility(View.INVISIBLE);
                 txtMarkSheetAttach.setBackgroundResource(R.drawable.ic_attach);
+                // After removing attachment set again original tag to textview
+                txtBirthCertificateAttach.setTag("Birth");
 
                 Snackbar.make(btnSubmit, "Attachment removed", Snackbar.LENGTH_LONG).show();
                 break;
@@ -458,6 +552,8 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
                 txtBirthCancel.setVisibility(View.INVISIBLE);
 
                 txtBirthCertificateAttach.setBackgroundResource(R.drawable.ic_attach);
+                // After removing attachment set again original tag to textview
+                txtMarkSheetAttach.setTag("Mark");
 
                 Snackbar.make(btnSubmit, "Attachment removed", Snackbar.LENGTH_LONG).show();
 
@@ -519,6 +615,8 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                 inputName.setText("");
                 inputContact.setText("");
+                inpuEmail.setText("");
+
 
                 txtAttach.setBackgroundResource(R.drawable.ic_attach);
                 txtBankAttach.setBackgroundResource(R.drawable.ic_attach);
@@ -541,6 +639,7 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                 inputName.setText("");
                 inputContact.setText("");
+                inpuEmail.setText("");
 
                 txtAttach.setBackgroundResource(R.drawable.ic_attach);
                 txtBankAttach.setBackgroundResource(R.drawable.ic_attach);

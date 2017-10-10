@@ -55,6 +55,9 @@ public class TourProductDetailResponse {
     @SerializedName("reviews")
     private ProductReviewDetailResponse response;
 
+    @SerializedName("quantity")
+    private String quantity;
+
 
     public String getId() {
         return id;
@@ -96,10 +99,6 @@ public class TourProductDetailResponse {
         return extraTabResponse;
     }
 
-    public void setResponse(ProductReviewDetailResponse response) {
-        this.response = response;
-    }
-
     public ProductReviewDetailResponse getResponse() {
         return response;
     }
@@ -112,55 +111,12 @@ public class TourProductDetailResponse {
         return original_imagesList;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public void setSpecial(String special) {
-        this.special = special;
-    }
-
-    public void setImagesList(ArrayList<String> imagesList) {
-        this.imagesList = imagesList;
-    }
-
-    public void setOriginal_imagesList(ArrayList<String> original_imagesList) {
-        this.original_imagesList = original_imagesList;
-    }
-
-    public void setOriginal_image(String original_image) {
-        this.original_image = original_image;
-    }
-
     public String getOriginal_image() {
         return original_image;
     }
 
-    public void setExtraTabResponse(List<TourProductextraTabResponse> extraTabResponse) {
-        this.extraTabResponse = extraTabResponse;
+
+    public String getQuantity() {
+        return quantity;
     }
 }

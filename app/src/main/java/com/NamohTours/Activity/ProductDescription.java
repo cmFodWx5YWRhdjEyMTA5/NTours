@@ -3,9 +3,11 @@ package com.NamohTours.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -14,6 +16,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DividerItemDecoration;
@@ -88,7 +91,7 @@ public class ProductDescription extends LeftDrawer {
     Toolbar toolbar;
 
     String ProductId, CategoryId, subCategory, Sub_Parent_Id, ParentId, ExtraTabtitle, ExtratabDesc, productPrice,
-            productSpecialPrice, name, contact, edtqty, edtdate;
+            productSpecialPrice, name, contact, edtqty, edtdate, StockQty;
     ConnectionDetector cd;
 
     SharedPreferences prefs;
@@ -113,7 +116,7 @@ public class ProductDescription extends LeftDrawer {
     private ProgressDialog progressdialog;
     private ProductUserReviewAdapter productUserReviewAdapter;
     private CardView productReviewCard;
-
+    private AlertDialog alertDialog = null;
 
     private LinearLayout ll;
     private AppCompatCheckBox[] ch;
@@ -129,6 +132,10 @@ public class ProductDescription extends LeftDrawer {
     private HashMap<String, Object> optionsIds;
 
     Target target;
+    private boolean Btnflag, isOptionsAvailable;
+
+    public ProductDescription() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,6 +212,9 @@ public class ProductDescription extends LeftDrawer {
         productSpecialPrice = getIntent().getStringExtra("special");
 
 
+        Btnflag = false;
+        isOptionsAvailable = false;
+
         if ((productSpecialPrice != null) || (productPrice != null)) {
             if (!(productSpecialPrice.equals("false"))) {
                 txtSpecialPrice.setVisibility(View.VISIBLE);
@@ -240,6 +250,17 @@ public class ProductDescription extends LeftDrawer {
 
             }
 
+        }
+
+
+        if (Btnflag) {
+            btnEnquireForThisTour.setBackgroundColor(getResources().getColor(R.color.gray));
+            btnEnquireForThisTour.setEnabled(false);
+            btnEnquireForThisTour.setClickable(false);
+        } else {
+            btnEnquireForThisTour.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnEnquireForThisTour.setEnabled(true);
+            btnEnquireForThisTour.setClickable(true);
         }
 
 
@@ -315,6 +336,8 @@ public class ProductDescription extends LeftDrawer {
 
 
                                 int siz = registerResponse.getData().getTourProductOptionsResponses().size();
+                                StockQty = registerResponse.getData().getQuantity();
+
 
 
                                 for (int i = 0; i < siz; i++) {
@@ -323,6 +346,8 @@ public class ProductDescription extends LeftDrawer {
                                     // FOR radio , dropdown
                                     if (registerResponse.getData().getTourProductOptionsResponses().get(i).getType().equals("select")) {
 
+
+                                        isOptionsAvailable = true;
 
                                         int radioSize = registerResponse.getData().getTourProductOptionsResponses().get(i).getTourProductOptionsDetailResponseList().size();
 
@@ -714,16 +739,17 @@ public class ProductDescription extends LeftDrawer {
                     @Override
                     public void onClick(View v) {
 
-                        StringBuilder body = new StringBuilder();
-                        body.append("Name :" + name);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Contact :" + contact);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Product Id :" + product_id);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Tour Options :" + OptionsMailKeyValue.toString());
 
-                        new SendMailAsync(body.toString()).execute();
+                        if (Btnflag) {
+                            // you Already Send Enquiry for this Product
+
+                            Snackbar.make(btnEnquireForThisTour, "You already send enquiry for this product !", Snackbar.LENGTH_LONG).show();
+                        } else {
+                            showEnqDialog();
+                        }
+
+
+
 
                     }
                 });
@@ -733,14 +759,33 @@ public class ProductDescription extends LeftDrawer {
                     @Override
                     public void onClick(View v) {
 
-
                         edtqty = edtQty.getText().toString();
 
-
                         if (!(TextUtils.isEmpty(edtqty))) {
-                            AddToCart(String.valueOf(product_id), edtqty, optionsIds);
+
+
+                            if (StockQty != null) {
+
+                                // If Stock is Greater than User entered Qty then add to cart
+                                // Means Stock is Avaliable
+                                if (Integer.parseInt(StockQty) >= Integer.parseInt(edtqty)) {
+
+                                    AddToCart(String.valueOf(product_id), edtqty, optionsIds);
+
+
+                                }
+
+                                // Else show Out Of Stock Msg
+                                // Out of Stock tour
+                                else {
+                                    Snackbar.make(btnAddtoCart, "Out of Stock", Snackbar.LENGTH_LONG).show();
+                                }
+
+                        }
+
+
                         } else {
-                            Snackbar.make(btnAddtoCart, "Please enter quantity", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(btnAddtoCart, "Enter quantity", Snackbar.LENGTH_LONG).show();
                         }
 
                     }
@@ -769,10 +814,13 @@ public class ProductDescription extends LeftDrawer {
                                             + (monthOfYear + 1) + "/" + year);
 */
 
-                                        edtDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                        //year + "-" + (monthOfYear + 1) + "-" + dayOfMonth
+                                        // Display DDMMYY format of date
+                                        edtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
+                                        // But Post YYMMDD format for Request for add to cart
                                         // Add date in options
-                                        optionsIds.put(edtdate, edtDate.getText().toString());
+                                        optionsIds.put(edtdate, year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                                     }
                                 }, mYear, mMonth, mDay);
 
@@ -825,6 +873,49 @@ public class ProductDescription extends LeftDrawer {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void showEnqDialog() {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Send Enquiry");
+        builder.setMessage("Do you really want to send enquiry ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+
+                StringBuilder body = new StringBuilder();
+                body.append("Name :" + name);
+                body.append(System.getProperty("line.separator"));
+                body.append("Contact :" + contact);
+                body.append(System.getProperty("line.separator"));
+                body.append("Product Id :" + product_id);
+                body.append(System.getProperty("line.separator"));
+                body.append("Tour Options :" + OptionsMailKeyValue.toString());
+
+                new SendMailAsync(body.toString()).execute();
+
+
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog = builder.create();
+
+        //alertDialog.setButton();
+        alertDialog.show();
+
+
     }
 
 
@@ -1017,10 +1108,27 @@ public class ProductDescription extends LeftDrawer {
 
                 if (response.body().getSuccess().equals("true")) {
                     // added successfully
-                    Snackbar.make(btnAddtoCart, "Product added to cart successfully!", Snackbar.LENGTH_LONG).show();
+                    //Snackbar.make(btnAddtoCart, "Product added to cart successfully!", Snackbar.LENGTH_LONG).show();
+
+                    Intent gotoCart = new Intent(ProductDescription.this, GetCartProductsActivity.class);
+                    startActivity(gotoCart);
+                    finish();
+
+
+
+
                 } else {
 
-                    Snackbar.make(btnAddtoCart, response.body().getWarning().toString(), Snackbar.LENGTH_LONG).show();
+
+                    if (response.body().getWarning().getOption().size() > 0) {
+
+                        Snackbar.make(btnAddtoCart, "Please Select Options", Snackbar.LENGTH_LONG).show();
+
+
+                    }
+
+
+
                     // not added successfully
                     //  Snackbar.make(btnAddtoCart,"Please select options,date,quantity",Snackbar.LENGTH_LONG).show();
                 }
@@ -1101,8 +1209,6 @@ public class ProductDescription extends LeftDrawer {
             target = new Target() {
                 @Override
                 public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-
-                    Log.e(TAG, "onBitmapLoaded: ");
                     imageView.setImage(ImageSource.bitmap(bitmap));
                     thumbView.setImageBitmap(bitmap);
                 }
@@ -1110,7 +1216,6 @@ public class ProductDescription extends LeftDrawer {
                 @Override
                 public void onBitmapFailed(Drawable errorDrawable) {
 
-                    Log.e(TAG, "onBitmapFailed: ");
                     imageView.setImage(ImageSource.resource(R.drawable.category_placeholder));
                     thumbView.setImageDrawable(getResources().getDrawable(R.drawable.category_placeholder));
                 }
@@ -1118,7 +1223,6 @@ public class ProductDescription extends LeftDrawer {
                 @Override
                 public void onPrepareLoad(Drawable placeHolderDrawable) {
 
-                    Log.e(TAG, "onPrepareLoad: ");
                 }
             };
 
@@ -1211,6 +1315,9 @@ public class ProductDescription extends LeftDrawer {
                 progressdialog.dismiss();
                 Snackbar.make(recyclerView, "Thanks,We will contact you shortly!", Snackbar.LENGTH_LONG).show();
 
+                Btnflag = true;
+
+
 
             } else {
                 progressdialog.dismiss();
@@ -1222,5 +1329,6 @@ public class ProductDescription extends LeftDrawer {
 
 
     }
+
 
 }

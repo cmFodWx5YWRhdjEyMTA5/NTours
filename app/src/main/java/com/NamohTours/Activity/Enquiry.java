@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.NamohTours.R;
 import com.NamohTours.Service.ConnectionDetector;
+import com.NamohTours.Service.ValidationToolBox;
 import com.NamohTours.SmtpMail.GMailSender;
 import com.NamohTours.View.ArrayListAnySize;
 
@@ -80,6 +81,8 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
         Options = (Spinner) findViewById(R.id.Options);
 
         txtTourAttach = (TextView) findViewById(R.id.txtTourAttachment);
+        txtTourAttach.setTag("Attach");
+
 
         txtCancel = (TextView) findViewById(R.id.txtAttchCancel);
 
@@ -127,62 +130,80 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
                 Feedback = inputFeedback.getText().toString();
 
 
+
                 if (cd.isConnectingToInternet(getApplicationContext())) {
 
-                    if ((!TextUtils.isEmpty(inputName.getText().toString())) && (!TextUtils.isEmpty(inputContact.getText().toString())) && ((Options.getSelectedItem() != null) && (!Options.getSelectedItem().equals("Select Option")))) {
+
+                    if ((!TextUtils.isEmpty(inputName.getText().toString())) && (!TextUtils.isEmpty(inputContact.getText().toString())))
+
+                    {
+
+                        if (((Options.getSelectedItem() != null) && (!Options.getSelectedItem().equals("Select Option")))) {
 
 
-                        final StringBuilder body = new StringBuilder();
-                        body.append("Name :" + Name);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Contact :" + telephone);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Email Id :" + email);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Option :" + options);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Comment :" + Feedback);
-                        body.append(System.getProperty("line.separator"));
+                            boolean isValidName = ValidationToolBox.validateFullName(Name);
+                            boolean isValidContact = ValidationToolBox.validateMobNo(telephone);
+
+                            if (isValidName) {
+
+                                if (isValidContact) {
+
+                                    if (TextUtils.isEmpty(email)) {
+                                        final StringBuilder body = new StringBuilder();
+                                        body.append("Name :" + Name);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("Contact :" + telephone);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("Email Id :" + email);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("Option :" + options);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("Comment :" + Feedback);
+                                        body.append(System.getProperty("line.separator"));
+
+                                        new SendMailAsync(body.toString(), attachList).execute();
+
+                                    } else {
 
 
-                        new SendMailAsync(body.toString(), attachList).execute();
+                                        boolean isValidEmail = ValidationToolBox.validateEmailId(email);
 
+                                        if (isValidEmail) {
 
-                        // Using SMTP
-                      /*  new Thread(new Runnable() {
+                                            final StringBuilder body = new StringBuilder();
+                                            body.append("Name :" + Name);
+                                            body.append(System.getProperty("line.separator"));
+                                            body.append("Contact :" + telephone);
+                                            body.append(System.getProperty("line.separator"));
+                                            body.append("Email Id :" + email);
+                                            body.append(System.getProperty("line.separator"));
+                                            body.append("Option :" + options);
+                                            body.append(System.getProperty("line.separator"));
+                                            body.append("Comment :" + Feedback);
+                                            body.append(System.getProperty("line.separator"));
+                                            new SendMailAsync(body.toString(), attachList).execute();
+                                        } else {
+                                            inputEmail.setError(getResources().getString(R.string.invalid_email));
+                                        }
 
-                            @Override
-                            public void run() {
-                                try {
+                                    }
 
-                                  //  progressdialog.show();
-                                    GMailSender sender = new GMailSender("contact@namoh.co.in",
-                                            "namoh@1212");
-                                    sender.sendMailWithAttach("Namoh Tours Enquiry", body.toString(),
-                                            "contact@namoh.co.in", "contact@namoh.co.in", attachList);
-
-
-                                    txtTourAttach.setBackgroundResource(R.drawable.ic_attach);
-                                    attachList.clear();
-
-
-                                      //  progressdialog.dismiss();
-
-
-                                    Snackbar.make(btnSubmit, "Enquiry Send Successfully !", Snackbar.LENGTH_LONG).show();
-
-
-                                } catch (Exception e) {
-                                    Log.e("SendMail", e.getMessage(), e);
+                                } else {
+                                    inputContact.setError(getResources().getString(R.string.invalid_mobile));
                                 }
+
+                            } else {
+                                inputName.setError(getResources().getString(R.string.invalid_name));
                             }
 
-                        }).start();*/
-
+                        } else {
+                            Snackbar.make(Options, "Select option", Snackbar.LENGTH_LONG).show();
+                        }
 
                     } else {
-                        Snackbar.make(btnSubmit, "Please enter all details ", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(btnSubmit, "Enter all details", Snackbar.LENGTH_LONG).show();
                     }
+
                 } else {
                     Snackbar.make(btnSubmit, "Please turn on your mobile data or wifi ", Snackbar.LENGTH_LONG).show();
                 }
@@ -240,13 +261,29 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
 
 
         if (id == R.id.txtTourAttachment) {
-            choosePhotoFromGallary();
+
+
+            if (txtTourAttach.getTag().toString().contains("Check")) {
+
+                // If Text view tag is Check then do nothing , and texview image is checkbox then
+
+            }
+
+            //  else text view image is attach then open gallery
+            else {
+                choosePhotoFromGallary();
+            }
+
+
+
+
         }
 
         if (id == R.id.txtAttchCancel) {
             attachList.clear();
             txtCancel.setVisibility(View.GONE);
             txtTourAttach.setBackgroundResource(R.drawable.ic_attach);
+            txtTourAttach.setTag("Attach");
             Snackbar.make(btnSubmit, "Attachment removed", Snackbar.LENGTH_LONG).show();
 
         }
@@ -324,7 +361,6 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
                 cursor.moveToFirst();
                 columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 attachmentFile = cursor.getString(columnIndex);
-                Log.e("Attachment Path:", attachmentFile);
 
                 selectedimage = attachmentFile;
 
@@ -336,6 +372,7 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
 
 
                 txtTourAttach.setBackgroundResource(R.drawable.ic_checkbox);
+                txtTourAttach.setTag("Check");
                 txtCancel.setVisibility(View.VISIBLE);
                 // Toast.makeText(Enquiry.this, "Document attached", Toast.LENGTH_SHORT).show();
 
@@ -431,6 +468,7 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
             if (result.equals("success")) {
 
                 txtTourAttach.setBackgroundResource(R.drawable.ic_attach);
+                txtTourAttach.setTag("Attach");
                 inputName.setText("");
                 inputContact.setText("");
                 inputEmail.setText("");
@@ -442,6 +480,7 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
 
             } else {
                 txtTourAttach.setBackgroundResource(R.drawable.ic_attach);
+                txtTourAttach.setTag("Attach");
                 txtCancel.setVisibility(View.GONE);
                 attachList.clear();
                 progressdialog.dismiss();

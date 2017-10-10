@@ -20,6 +20,7 @@ import android.widget.Spinner;
 
 import com.NamohTours.R;
 import com.NamohTours.Service.ConnectionDetector;
+import com.NamohTours.Service.ValidationToolBox;
 import com.NamohTours.SmtpMail.GMailSender;
 
 import static com.NamohTours.Service.Prefs.Register_Preference;
@@ -87,7 +88,6 @@ public class Visa extends AppCompatActivity implements AdapterView.OnItemSelecte
         inputName.setText(name);
         inputContact.setText(telephone);
 
-
         // AutoCompleteTextView
         CityautocompleteView = (AutoCompleteTextView) findViewById(R.id.autoComplete_VisaCountry);
 
@@ -133,6 +133,7 @@ public class Visa extends AppCompatActivity implements AdapterView.OnItemSelecte
 
                 name = inputName.getText().toString();
                 telephone = inputContact.getText().toString();
+                email = inputEmail.getText().toString();
 
 
                 // If Internet is connected
@@ -140,50 +141,72 @@ public class Visa extends AppCompatActivity implements AdapterView.OnItemSelecte
                 if (cd.isConnectingToInternet(getApplicationContext())) {
 
 
-                    if ((!TextUtils.isEmpty(inputName.getText().toString())) && (!TextUtils.isEmpty(inputContact.getText().toString())) && ((VisaOptions.getSelectedItem() != null) && (!VisaOptions.getSelectedItem().equals("Select Option")))) {
+                    if ((!TextUtils.isEmpty(inputName.getText().toString())) && (!TextUtils.isEmpty(inputContact.getText().toString())))
+
+                    {
+
+                        if (((VisaOptions.getSelectedItem() != null) && (!VisaOptions.getSelectedItem().equals("Select Option")))) {
 
 
-                        final StringBuilder body = new StringBuilder();
-                        body.append("Name :" + name);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Contact :" + telephone);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Email :" + email);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("City :" + city);
+                            boolean isValidName = ValidationToolBox.validateFullName(name);
+                            boolean isValidContact = ValidationToolBox.validateMobNo(telephone);
+
+                            if (isValidName) {
+
+                                if (isValidContact) {
+
+                                    // If Email is Empty not need to validation
+                                    if (TextUtils.isEmpty(email)) {
+                                        final StringBuilder body = new StringBuilder();
+                                        body.append("Name :" + name);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("Contact :" + telephone);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("Email :" + email);
+                                        body.append(System.getProperty("line.separator"));
+                                        body.append("City :" + city);
+
+                                        new SendMailAsync(body.toString()).execute();
+
+                                    }
 
 
-                        new SendMailAsync(body.toString()).execute();
+                                    // Else Validate Email Id
+                                    else {
+                                        boolean isValidEmail = ValidationToolBox.validateEmailId(email);
 
+                                        if (isValidEmail) {
+                                            final StringBuilder body = new StringBuilder();
+                                            body.append("Name :" + name);
+                                            body.append(System.getProperty("line.separator"));
+                                            body.append("Contact :" + telephone);
+                                            body.append(System.getProperty("line.separator"));
+                                            body.append("Email :" + email);
+                                            body.append(System.getProperty("line.separator"));
+                                            body.append("City :" + city);
 
+                                            new SendMailAsync(body.toString()).execute();
 
-                       /* new Thread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                try {
-
-
-                                    GMailSender sender = new GMailSender("contact@namoh.co.in",
-                                            "namoh@1212");
-                                    sender.sendMail("Namoh Visa Enquiry", body.toString(),
-                                            "contact@namoh.co.in", "contact@namoh.co.in");
-
-
-                                    Snackbar.make(btnSubmit, "Visa Enquiry Send Successfully !", Snackbar.LENGTH_LONG).show();
-
-
-
-                                } catch (Exception e) {
-                                    Log.e("SendMail", e.getMessage(), e);
+                                        } else {
+                                            inputEmail.setError(getResources().getString(R.string.invalid_email));
+                                        }
+                                    }
+                                } else {
+                                    inputContact.setError(getResources().getString(R.string.invalid_mobile));
                                 }
+
+
+                            } else {
+                                inputName.setError(getResources().getString(R.string.invalid_name));
                             }
 
-                        }).start();*/
 
+                        } else {
 
+                            Snackbar.make(VisaOptions, "Select visa option", Snackbar.LENGTH_LONG).show();
+                        }
                     } else {
-                        Snackbar.make(btnSubmit, "Please enter all details", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(btnSubmit, "Enter all details", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
                     Snackbar.make(btnSubmit, "Please turn on your mobile data or wifi ", Snackbar.LENGTH_LONG).show();
@@ -192,7 +215,6 @@ public class Visa extends AppCompatActivity implements AdapterView.OnItemSelecte
 
             }
         });
-
 
     }
 
@@ -240,7 +262,6 @@ public class Visa extends AppCompatActivity implements AdapterView.OnItemSelecte
         private SendMailAsync(String body) {
 
             this.mailBody = body;
-
 
         }
 

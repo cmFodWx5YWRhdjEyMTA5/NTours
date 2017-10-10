@@ -107,7 +107,7 @@ public class Account extends AppCompatActivity {
                         txtContact.append(contactno);
 
 
-                        String reward = "Reward Points :";
+                        String reward = "Reward Points : ";
                         SpannableString ss2 = new SpannableString(reward);
                         ss2.setSpan(new StyleSpan(Typeface.BOLD), 0, ss2.length(), 0);
                         txtRewardPoints.append(ss2);

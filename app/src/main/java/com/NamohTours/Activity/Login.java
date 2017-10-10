@@ -261,7 +261,7 @@ public class Login extends AppCompatActivity {
 
                                                                         SharedPreferences.Editor editor = RegisterPrefences.edit();
                                                                         editor.putBoolean(UserRegister, true);
-                                                                        editor.putString(UserName, fname);
+                                                                        editor.putString(UserName, fname + " " + lname);
                                                                         editor.putString(UserContact, mobileno);
                                                                         editor.putString(UserEmail, emailid);
                                                                         editor.putString(UserID, CustID);
@@ -383,7 +383,6 @@ public class Login extends AppCompatActivity {
                                                         @Override
                                                         public void onFailure(Call<TokenResponse> call, Throwable t) {
 
-                                                            Log.e(TAG, "Error : " + t.toString());
 
                                                             inputPassword.setEnabled(true);
                                                             inputEmail.setEnabled(true);
@@ -516,7 +515,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onFailure(Call<TokenResponse> call, Throwable t) {
 
-                Log.e(TAG, "Error : " + t.toString());
+
             }
         });
 

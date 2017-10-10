@@ -147,7 +147,7 @@
     <string name="Filter">No Filters Apply</string>
     <string name="search_no_results">No Search Results Found, Please Search Again.</string>
     <string name="empty_search">Enter Search Text</string>
-    <string name="search_txt">Search Destinations, Categories &amp; Tours</string>
+    <string name="search_txt">Search Destinations &amp; Tours</string>
 
 
     <string-array name="country_array">
@@ -384,6 +384,11 @@
     <string name="invalid_fname">Invalid first name</string>
     <string name="invalid_lname">Invalid last name</string>
     <string name="pwd_cofirmpwd">Password not match</string>
+    <string name="invalid_name">Invalid Name</string>
+
+    <!--  <u>I agree terms &amp; conditions.</u> -->
+
+    <string name="terms"><u>I agree terms &amp; conditions.</u></string>
 
 
 </resources>

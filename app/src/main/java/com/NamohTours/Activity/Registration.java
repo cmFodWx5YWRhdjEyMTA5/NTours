@@ -303,7 +303,7 @@ public class Registration extends AppCompatActivity {
 
                                                                                             SharedPreferences.Editor editor = RegisterPrefences.edit();
                                                                                             editor.putBoolean(UserRegister, true);
-                                                                                            editor.putString(UserName, fname);
+                                                                                            editor.putString(UserName, fname + " " + lname);
                                                                                             editor.putString(UserContact, mobileno);
                                                                                             editor.putString(UserEmail, emailId);
                                                                                             editor.putString(UserID, CustID);

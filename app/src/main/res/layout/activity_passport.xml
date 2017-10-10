@@ -63,7 +63,8 @@
                 android:inputType="phone"
                 android:maxLines="1"
                 android:padding="10dip"
-                android:textColorHint="@color/gray" />
+                android:textColorHint="@color/gray"
+                android:maxLength="10" />
 
             <EditText
                 android:id="@+id/input_Passportemail"

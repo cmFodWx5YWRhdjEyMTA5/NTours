@@ -135,7 +135,6 @@ public class FeaturedProductAdapter extends RecyclerView.Adapter<FeaturedProduct
 
         notifyItemChanged(position);
 
-        Log.e("Wish", "List" + dbManager.getWish());
 
     }
 
