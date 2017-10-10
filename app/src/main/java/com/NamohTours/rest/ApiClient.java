@@ -32,7 +32,6 @@ public class ApiClient {
     public static Retrofit getClient() {
         if (retrofit == null) {
 
-
             // FOR Logging
            /* HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
