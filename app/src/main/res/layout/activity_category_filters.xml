@@ -24,7 +24,7 @@
         <LinearLayout
             android:id="@+id/linearFilterLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -32,8 +32,8 @@
                 android:id="@+id/tour_Filter_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
-                android:layout_above="@+id/tour_filter_btn_layout" />
+                android:nestedScrollingEnabled="false" />
+
 
             <ProgressBar
                 android:id="@+id/tour_Filter_Progress"
@@ -41,23 +41,24 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 style="?android:progressBarStyle"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/txtNoFilter"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/Filter"
-                android:layout_margin="10dp"
-                android:textColor="@color/colorGrey"
-                android:layout_gravity="left"
-                android:visibility="gone"
-                android:gravity="center"
-                android:textSize="@dimen/filter_heading" />
-
+                android:visibility="invisible" />
 
         </LinearLayout>
+
+
     </android.support.v4.widget.NestedScrollView>
+
+
+    <TextView
+        android:id="@+id/txtNoFilter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/Filter"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorGrey"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textSize="@dimen/filter_heading" />
 
     <LinearLayout
         android:id="@+id/tour_filter_btn_layout"
