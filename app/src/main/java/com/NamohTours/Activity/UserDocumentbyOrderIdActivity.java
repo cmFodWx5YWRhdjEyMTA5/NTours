@@ -204,6 +204,7 @@ public class UserDocumentbyOrderIdActivity extends AppCompatActivity {
                             txtOrderId.setVisibility(View.GONE);
                             custDocs.setVisibility(View.GONE);
                             txtNodocs.setVisibility(View.VISIBLE);
+                            //  Snackbar.make(custDocs, "No Documents", Snackbar.LENGTH_LONG).show();
 
                             // No Docs Yet!
                         }
@@ -213,6 +214,7 @@ public class UserDocumentbyOrderIdActivity extends AppCompatActivity {
                         txtOrderId.setVisibility(View.GONE);
                         custDocs.setVisibility(View.GONE);
                         txtNodocs.setVisibility(View.VISIBLE);
+                        //  Snackbar.make(custDocs, "No Documents", Snackbar.LENGTH_LONG).show();
 
                     }
 

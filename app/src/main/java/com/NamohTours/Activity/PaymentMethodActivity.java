@@ -11,6 +11,7 @@ import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -184,7 +185,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
 
 
                     } else {
-                        Snackbar.make(btnPaymentContinue, "Please select payment method, terms & conditions", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(btnPaymentContinue, "Select payment method & terms", Snackbar.LENGTH_LONG).show();
                     }
 
 
@@ -192,16 +193,28 @@ public class PaymentMethodActivity extends AppCompatActivity {
             });
 
 
+           /* txtTermsLink.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    Intent terms = new Intent(PaymentMethodActivity.this, WebUrl.class);
+                    terms.putExtra("Web", "terms");
+                    startActivity(terms);
+
+                    return true;
+                }
+            });*/
+
+
             txtTermsLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Intent terms = new Intent(PaymentMethodActivity.this, WebUrl.class);
                     terms.putExtra("Web", "terms");
                     startActivity(terms);
 
                 }
             });
+
 
         } else {
 

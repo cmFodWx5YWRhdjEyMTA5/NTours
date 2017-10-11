@@ -55,7 +55,7 @@ public class ValidationToolBox {
 
     public static boolean validateFullName(String Name) {
 
-        if (Name.matches("^([A-Za-z]+[\\s]+[A-Za-z]+)$")) {
+        if (Name.matches("^([A-Za-z\\s]+[A-Za-z]+)$")) {
             return true;
         }
 

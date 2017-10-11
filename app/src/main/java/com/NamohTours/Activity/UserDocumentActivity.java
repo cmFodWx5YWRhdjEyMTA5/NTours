@@ -200,6 +200,7 @@ public class UserDocumentActivity extends AppCompatActivity {
 
                             custDocs.setVisibility(View.GONE);
                             txtNodocs.setVisibility(View.VISIBLE);
+                            //  Snackbar.make(custDocs, "No Documents", Snackbar.LENGTH_LONG).show();
 
                             // No Docs Yet!
                         }
@@ -208,6 +209,7 @@ public class UserDocumentActivity extends AppCompatActivity {
                         // no documents yet
                         custDocs.setVisibility(View.GONE);
                         txtNodocs.setVisibility(View.VISIBLE);
+                        //   Snackbar.make(custDocs, "No Documents", Snackbar.LENGTH_LONG).show();
 
                     }
 

@@ -110,9 +110,6 @@ public class SplashScreen extends AppCompatActivity {
 */
 
 
-                            Log.e(TAG, "Call : " + call.request().url());
-                            Log.d(TAG, "Access Token : " + token);
-
 
                             NamohISO.startAnimation(ISOlogoAnimation);
                             ISOlogoAnimation.setAnimationListener(new Animation.AnimationListener() {
@@ -145,7 +142,6 @@ public class SplashScreen extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<TokenResponse> call, Throwable t) {
 
-                        Log.e(TAG, "Failure :" + t.toString());
 
                         Toast.makeText(getApplicationContext(), "Please Try Later...", Toast.LENGTH_LONG).show();
 

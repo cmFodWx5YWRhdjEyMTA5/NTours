@@ -302,7 +302,11 @@ public class Visa extends AppCompatActivity implements AdapterView.OnItemSelecte
 
                 inputName.setText("");
                 inputContact.setText("");
+                VisaOptions.setSelection(0);
+                CityautocompleteView.setText("");
                 progressdialog.dismiss();
+
+
                 Snackbar.make(btnSubmit, "Visa enquiry send successfully !", Snackbar.LENGTH_LONG).show();
 
 

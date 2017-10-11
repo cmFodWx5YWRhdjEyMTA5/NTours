@@ -17,6 +17,7 @@ import android.widget.Spinner;
 
 import com.NamohTours.R;
 import com.NamohTours.Service.ConnectionDetector;
+import com.NamohTours.Service.ValidationToolBox;
 import com.NamohTours.SmtpMail.GMailSender;
 
 import static com.NamohTours.Service.Prefs.Register_Preference;
@@ -30,7 +31,6 @@ public class TravelInsurance extends AppCompatActivity {
     Toolbar toolbar;
 
     private EditText inputName, inputEmail, inputContact, inputCountries, inputNoOfTravellers, inputNoOfDays;
-    private Spinner Options;
     private Button btnSubmit;
     private String Name, email, telephone, countries, travellers, days;
     private ConnectionDetector cd;
@@ -94,25 +94,52 @@ public class TravelInsurance extends AppCompatActivity {
                     if ((!TextUtils.isEmpty(inputName.getText().toString())) && (!TextUtils.isEmpty(inputContact.getText().toString())) && (!TextUtils.isEmpty(inputCountries.getText().toString())) && (!TextUtils.isEmpty(inputNoOfTravellers.getText().toString())) && (!TextUtils.isEmpty(inputNoOfDays.getText().toString())))
 
                     {
-                        final StringBuilder body = new StringBuilder();
-                        body.append("Name :" + Name);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Contact :" + telephone);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Email Id :" + email);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Travelling Countries :" + countries);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Number of Travellers :" + travellers);
-                        body.append(System.getProperty("line.separator"));
-                        body.append("Number of Days :" + days);
 
 
-                        new SendMailAsync(body.toString()).execute();
+                        boolean isValidName = ValidationToolBox.validateFullName(Name);
+                        boolean isValidTelephone = ValidationToolBox.validateMobNo(telephone);
+                        boolean isValidEmail = ValidationToolBox.validateEmailId(email);
+
+
+                        if (isValidName) {
+
+                            if (isValidTelephone) {
+
+                                if (isValidEmail) {
+
+                                    final StringBuilder body = new StringBuilder();
+                                    body.append("Name :" + Name);
+                                    body.append(System.getProperty("line.separator"));
+                                    body.append("Contact :" + telephone);
+                                    body.append(System.getProperty("line.separator"));
+                                    body.append("Email Id :" + email);
+                                    body.append(System.getProperty("line.separator"));
+                                    body.append("Travelling Countries :" + countries);
+                                    body.append(System.getProperty("line.separator"));
+                                    body.append("Number of Travellers :" + travellers);
+                                    body.append(System.getProperty("line.separator"));
+                                    body.append("Number of Days :" + days);
+
+
+                                    new SendMailAsync(body.toString()).execute();
+
+
+                                } else {
+                                    inputEmail.setError(getResources().getString(R.string.invalid_email));
+                                }
+
+                            } else {
+                                inputContact.setError(getResources().getString(R.string.invalid_mobile));
+                            }
+
+                        } else {
+                            inputName.setError(getResources().getString(R.string.invalid_name));
+                        }
+
 
 
                     } else {
-                        Snackbar.make(btnSubmit, "Please enter all details ", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(btnSubmit, "Enter all details ", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
                     Snackbar.make(btnSubmit, "Please turn on your mobile data or wifi ", Snackbar.LENGTH_LONG).show();

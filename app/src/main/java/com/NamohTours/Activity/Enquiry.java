@@ -35,6 +35,8 @@ import com.NamohTours.Service.ValidationToolBox;
 import com.NamohTours.SmtpMail.GMailSender;
 import com.NamohTours.View.ArrayListAnySize;
 
+import java.util.ArrayList;
+
 import static com.NamohTours.Service.Prefs.Register_Preference;
 import static com.NamohTours.Service.Prefs.UserContact;
 import static com.NamohTours.Service.Prefs.UserName;
@@ -49,7 +51,7 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
     Toolbar toolbar;
     private Uri URI = null;
     private int GALLERY = 1;
-    private ArrayListAnySize<String> attachList;
+    private ArrayList<String> attachList;
     private EditText inputName, inputEmail, inputContact, inputFeedback;
     private Spinner Options;
     private Button btnSubmit;
@@ -95,7 +97,7 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
         inputName.setText(Name);
         inputContact.setText(telephone);
 
-        attachList = new ArrayListAnySize<>();
+        attachList = new ArrayList<String>();
         // Create an ArrayAdapter using the string array and a default spinner
         ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
                 .createFromResource(this, R.array.options_array,
@@ -422,10 +424,10 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
 
 
         private String mailBody;
-        private ArrayListAnySize<String> mailAttach;
+        private ArrayList<String> mailAttach;
 
 
-        private SendMailAsync(String body, ArrayListAnySize<String> attachList) {
+        private SendMailAsync(String body, ArrayList<String> attachList) {
 
             this.mailBody = body;
             this.mailAttach = attachList;
@@ -473,6 +475,7 @@ public class Enquiry extends AppCompatActivity implements AdapterView.OnItemSele
                 inputContact.setText("");
                 inputEmail.setText("");
                 inputFeedback.setText("");
+                Options.setSelection(0);
                 txtCancel.setVisibility(View.GONE);
                 attachList.clear();
                 progressdialog.dismiss();

@@ -38,7 +38,7 @@
             android:layout_height="match_parent"
             android:textColor="@color/colorGrey"
             android:gravity="center"
-            android:text="Cart is Empty!"
+            android:text="Empty Cart"
             android:visibility="gone" />
 
     </LinearLayout>

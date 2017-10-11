@@ -138,7 +138,7 @@ public class ForgetPassword extends AppCompatActivity {
 
                     // if Text Fileds Empty
                     if (TextUtils.isEmpty(email)) {
-                        Snackbar.make(btnSubmit, "Please Fill Email Id", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(btnSubmit, "Enter Email Id", Snackbar.LENGTH_LONG).show();
                     } else {
 
                         boolean isValidEmailId = ValidationToolBox.validateEmailId(email);
@@ -221,7 +221,10 @@ public class ForgetPassword extends AppCompatActivity {
 
                             }
                         } else {
-                            Snackbar.make(btnSubmit, R.string.invalid_email, Snackbar.LENGTH_LONG).show();
+
+
+                            inputEmail.setError(getResources().getString(R.string.invalid_email));
+                            // Snackbar.make(btnSubmit, R.string.invalid_email, Snackbar.LENGTH_LONG).show();
                         }
 
                     }

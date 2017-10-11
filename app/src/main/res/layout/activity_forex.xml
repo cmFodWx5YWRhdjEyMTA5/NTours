@@ -69,7 +69,8 @@
                 android:maxLines="1"
                 android:background="@drawable/rect_edit_text"
                 android:padding="10dip"
-                android:layout_marginBottom="10dip" />
+                android:layout_marginBottom="10dip"
+                android:maxLength="10" />
 
 
             <EditText

@@ -144,8 +144,8 @@
 
     <string name="internet_connection_off">Please turn on your mobile data or wifi</string>
 
-    <string name="Filter">No Filters Apply</string>
-    <string name="search_no_results">No Search Results Found, Please Search Again.</string>
+    <string name="Filter">No Filters Available</string>
+    <string name="search_no_results">No Search Results Found.\nPlease Search Again.</string>
     <string name="empty_search">Enter Search Text</string>
     <string name="search_txt">Search Destinations &amp; Tours</string>
 

@@ -130,14 +130,14 @@ public class UserOrderHistoryActivity extends AppCompatActivity {
 
                             orderHistoryRecyler.setVisibility(View.GONE);
                             txtOrderHistory.setVisibility(View.VISIBLE);
-                            Snackbar.make(orderHistoryRecyler, "No orders found!", Snackbar.LENGTH_LONG).show();
+                            //  Snackbar.make(orderHistoryRecyler, "No orders found!", Snackbar.LENGTH_LONG).show();
                         }
 
 
                     } else {
                         orderHistoryRecyler.setVisibility(View.GONE);
                         txtOrderHistory.setVisibility(View.VISIBLE);
-                        Snackbar.make(orderHistoryRecyler, response.body().getWarning(), Snackbar.LENGTH_LONG).show();
+                        // Snackbar.make(orderHistoryRecyler, response.body().getWarning(), Snackbar.LENGTH_LONG).show();
                     }
 
 

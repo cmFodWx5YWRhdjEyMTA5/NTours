@@ -178,7 +178,7 @@ public class SearchResults extends AppCompatActivity {
                                 if ((error = searchResponse.getError()) != null) {
                                     tourProgress.setVisibility(View.GONE);
                                     txtSearachNotFound.setVisibility(View.VISIBLE);
-                                    Snackbar.make(recyclerView, error, Snackbar.LENGTH_LONG).show();
+                                    //  Snackbar.make(recyclerView, error, Snackbar.LENGTH_LONG).show();
                                 }
 
                             }

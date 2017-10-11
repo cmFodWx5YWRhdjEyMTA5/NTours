@@ -59,7 +59,7 @@ public class GMailSender extends javax.mail.Authenticator {
 
     // for Send Mail With Multiple Attachment
     public synchronized void sendMailWithAttach(String subject, String body,
-                                                String sender, String recipients, ArrayListAnySize<String> filename) throws Exception {
+                                                String sender, String recipients, ArrayList<String> filename) throws Exception {
         MimeMessage message = new MimeMessage(session);
         // Create the message part
         BodyPart messageBodyPart = new MimeBodyPart();

@@ -194,7 +194,7 @@ public class GetCartProductsActivity extends AppCompatActivity {
                             cartProductsRecylerview.setVisibility(View.GONE);
                             txtCart.setVisibility(View.VISIBLE);
                             btnCheckout.setVisibility(View.INVISIBLE);
-                            Snackbar.make(cartProductsRecylerview, "Cart is Empty!", Snackbar.LENGTH_LONG).show();
+                            // Snackbar.make(cartProductsRecylerview, "Cart is Empty!", Snackbar.LENGTH_LONG).show();
                         }
 
                     }
@@ -204,7 +204,7 @@ public class GetCartProductsActivity extends AppCompatActivity {
                         cartProductsRecylerview.setVisibility(View.GONE);
                         txtCart.setVisibility(View.VISIBLE);
                         btnCheckout.setVisibility(View.INVISIBLE);
-                        Snackbar.make(cartProductsRecylerview, response.body().getWarning(), Snackbar.LENGTH_LONG).show();
+                        // Snackbar.make(cartProductsRecylerview, response.body().getWarning(), Snackbar.LENGTH_LONG).show();
                     }
 
 

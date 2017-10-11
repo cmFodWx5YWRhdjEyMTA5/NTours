@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.NamohTours.Adapter.ProductFilterAdapter;
@@ -44,11 +45,9 @@ public class CategoryFilters extends AppCompatActivity {
 
     private static final String TAG = CategoryFilters.class.getSimpleName();
 
-    LinearLayout linearLayoutFilter;
-
     Button btnReset, btnApply;
     TextView txtNofilter;
-
+    LinearLayout llFilterBtnLayout;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -65,6 +64,7 @@ public class CategoryFilters extends AppCompatActivity {
     RecyclerView recyclerView;
     List<TourCategoryFilterGroups> filterList;
     TextView productTitle;
+    private ProgressBar tourFilterProgress;
 
     String secemp = "";
     private List<TourCategoryFilterGroupsDetails> currentSelectedItems = new ArrayList<>();
@@ -85,6 +85,11 @@ public class CategoryFilters extends AppCompatActivity {
         txtNofilter = (TextView) findViewById(R.id.txtNoFilter);
         btnApply = (Button) findViewById(R.id.btnFilterApply);
         btnReset = (Button) findViewById(R.id.btnFilterReset);
+
+        llFilterBtnLayout = (LinearLayout) findViewById(R.id.tour_filter_btn_layout);
+        tourFilterProgress = (ProgressBar) findViewById(R.id.tour_Filter_Progress);
+
+        tourFilterProgress.setVisibility(View.VISIBLE);
 
         // getting token from shared preference
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
@@ -139,6 +144,8 @@ public class CategoryFilters extends AppCompatActivity {
                         if ((sucess = tourCategoryResponse.getSuccess()) != null) {
 
                             if (sucess.equals("true")) {
+
+                                tourFilterProgress.setVisibility(View.GONE);
 
 
                                 if ((tourCategoryResponse.getTourCategoryDetailResponses().getFilters().getFilter_groups().size()) > 0) {
@@ -204,13 +211,18 @@ public class CategoryFilters extends AppCompatActivity {
                                 if ((tourCategoryResponse.getTourCategoryDetailResponses().getFilters().getFilter_groups().size()) <= 0)
 
                                 {
+                                    tourFilterProgress.setVisibility(View.GONE);
                                     txtNofilter.setVisibility(View.VISIBLE);
+                                    llFilterBtnLayout.setVisibility(View.INVISIBLE);
                                 }
                             }
 
                             if (sucess.equals("false")) {
 
+                                tourFilterProgress.setVisibility(View.GONE);
                                 txtNofilter.setVisibility(View.VISIBLE);
+                                llFilterBtnLayout.setVisibility(View.INVISIBLE);
+
 
                             }
 
@@ -261,7 +273,7 @@ public class CategoryFilters extends AppCompatActivity {
                             }
 
                         } else {
-                            Snackbar.make(btnApply, "No Filters ", Snackbar.LENGTH_LONG).show();
+                            //  Snackbar.make(btnApply, "No Filters ", Snackbar.LENGTH_LONG).show();
                         }
 
 
