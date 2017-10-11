@@ -211,7 +211,7 @@ public class CategoryFilters extends AppCompatActivity {
                                 if ((tourCategoryResponse.getTourCategoryDetailResponses().getFilters().getFilter_groups().size()) <= 0)
 
                                 {
-                                    tourFilterProgress.setVisibility(View.GONE);
+                                    tourFilterProgress.setVisibility(View.INVISIBLE);
                                     txtNofilter.setVisibility(View.VISIBLE);
                                     llFilterBtnLayout.setVisibility(View.INVISIBLE);
                                 }
@@ -219,7 +219,7 @@ public class CategoryFilters extends AppCompatActivity {
 
                             if (sucess.equals("false")) {
 
-                                tourFilterProgress.setVisibility(View.GONE);
+                                tourFilterProgress.setVisibility(View.INVISIBLE);
                                 txtNofilter.setVisibility(View.VISIBLE);
                                 llFilterBtnLayout.setVisibility(View.INVISIBLE);
 

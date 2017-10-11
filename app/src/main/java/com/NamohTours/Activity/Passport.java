@@ -577,7 +577,7 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
                 txtMarksheetCancel.setVisibility(View.INVISIBLE);
                 txtMarkSheetAttach.setBackgroundResource(R.drawable.ic_attach);
                 // After removing attachment set again original tag to textview
-                txtBirthCertificateAttach.setTag("Mark");
+                txtMarkSheetAttach.setTag("Mark");
 
                 Toast.makeText(Passport.this, "Attachment removed", Toast.LENGTH_SHORT).show();
                 //  Snackbar.make(btnSubmit, "Attachment removed", Snackbar.LENGTH_LONG).show();
@@ -594,7 +594,7 @@ public class Passport extends AppCompatActivity implements View.OnClickListener 
 
                 txtBirthCertificateAttach.setBackgroundResource(R.drawable.ic_attach);
                 // After removing attachment set again original tag to textview
-                txtMarkSheetAttach.setTag("Birth");
+                txtBirthCertificateAttach.setTag("Birth");
                 Toast.makeText(Passport.this, "Attachment removed", Toast.LENGTH_SHORT).show();
                 //  Snackbar.make(btnSubmit, "Attachment removed", Snackbar.LENGTH_LONG).show();
 
